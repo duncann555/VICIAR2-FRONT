@@ -121,6 +121,7 @@ function Admin() {
                         variant="outline-primary"
                         size="sm"
                         className="me-2"
+                        onClick={() => setMostrarProductoModal(true)}
                       >
                         Editar
                       </Button>
@@ -144,6 +145,7 @@ function Admin() {
                         variant="outline-primary"
                         size="sm"
                         className="me-2"
+                        onClick={() => setMostrarProductoModal(true)}
                       >
                         Editar
                       </Button>
@@ -162,12 +164,9 @@ function Admin() {
           <div className="tab-content-wrapper">
             <Row className="align-items-center mb-3 g-2">
               <Col md={4}>
-                <Button
-                  className="btn-admin-secondary w-100"
-                  onClick={() => setMostrarUsuarioModal(true)}
-                >
-                  + Agregar usuario
-                </Button>
+                <p className="text-muted mb-0 text-center">
+                  Administración de usuarios
+                </p>
               </Col>
 
               <Col md={8}>
@@ -202,8 +201,8 @@ function Admin() {
                   <tbody className="text-center">
                     <tr>
                       <td>1</td>
-                      <td>Admin Demo</td>
-                      <td>admin@demo.com</td>
+                      <td>Sebastian</td>
+                      <td>sebaflomen@gmail.com</td>
                       <td>
                         <Badge bg="dark">admin</Badge>
                       </td>
@@ -215,19 +214,23 @@ function Admin() {
                           variant="outline-primary"
                           size="sm"
                           className="me-2"
+                          onClick={() => setMostrarUsuarioModal(true)}
                         >
                           Editar
                         </Button>
-                        <Button variant="outline-danger" size="sm">
+                        <Button variant="outline-danger me-2" size="sm">
                           Suspender
+                        </Button>
+                        <Button variant="outline-danger" size="sm">
+                          Eliminar
                         </Button>
                       </td>
                     </tr>
 
                     <tr>
                       <td>2</td>
-                      <td>Usuario Demo</td>
-                      <td>user@demo.com</td>
+                      <td>Matias</td>
+                      <td>matias555@gmail.com</td>
                       <td>
                         <Badge bg="secondary">usuario</Badge>
                       </td>
@@ -239,8 +242,12 @@ function Admin() {
                           variant="outline-primary"
                           size="sm"
                           className="me-2"
+                          onClick={() => setMostrarUsuarioModal(true)}
                         >
                           Editar
+                        </Button>
+                        <Button variant="outline-danger me-2" size="sm">
+                          Suspender
                         </Button>
                         <Button variant="outline-danger" size="sm">
                           Eliminar
@@ -299,6 +306,67 @@ function Admin() {
           <Button
             variant="secondary"
             onClick={() => setMostrarProductoModal(false)}
+          >
+            Cancelar
+          </Button>
+          <Button className="btn-primary-admin">Guardar</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={mostrarUsuarioModal}
+        onHide={() => setMostrarUsuarioModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Usuario</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="usuarioNombre">
+              <Form.Label>Nombre completo</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese nombre" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="usuarioEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="Ingrese email" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="usuarioRol">
+              <Form.Label>Rol</Form.Label>
+              <Form.Select>
+                <option>Seleccionar rol</option>
+                <option value="admin">Administrador</option>
+                <option value="usuario">Usuario</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="usuarioEstado">
+              <Form.Label>Estado</Form.Label>
+              <Form.Select>
+                <option>Activo</option>
+                <option>Suspendido</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group controlId="usuarioPassword" className="mb-3">
+              <Form.Label>Nueva contraseña</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Dejar vacío si no desea cambiarla"
+              />
+              <Form.Text className="text-muted text-center">
+                La contraseña actual no se puede ver por motivos de seguridad
+              </Form.Text>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setMostrarUsuarioModal(false)}
           >
             Cancelar
           </Button>
