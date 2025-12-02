@@ -360,16 +360,6 @@ function Admin() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group controlId="usuarioPassword" className="mb-3">
-              <Form.Label>Nueva contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Dejar vacío si no desea cambiarla"
-              />
-              <Form.Text className="text-muted text-center">
-                La contraseña actual no se puede ver por motivos de seguridad
-              </Form.Text>
-            </Form.Group>
           </Form>
         </Modal.Body>
 
