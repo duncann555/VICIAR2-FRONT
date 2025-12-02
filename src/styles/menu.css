@@ -1,0 +1,14 @@
+.navbar-bg-color{
+  background-color: #27187E !important;
+}
+
+.navbar-bg-color .nav-link,
+.navbar-bg-color .navbar-brand,
+.navbar-bg-color .navbar-nav .nav-link {
+  color: white !important;
+}
+
+/* Opcional: hover */
+.navbar-bg-color .nav-link:hover {
+  color: #F7F7FF !important;
+}
