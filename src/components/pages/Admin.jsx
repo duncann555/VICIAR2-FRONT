@@ -14,7 +14,8 @@ import "../../styles/admin.css";
 
 
 function Admin() {
-
+  const [mostrarProductoModal, setMostrarProductoModal] = useState(false);
+  const [mostrarUsuarioModal, setMostrarUsuarioModal] = useState(false);
 
   return (
     <Container fluid className="py-4">
