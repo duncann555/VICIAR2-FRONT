@@ -81,6 +81,40 @@ function Admin() {
     estado: "Activo",
   });
 
+  const totalProductos = productos.length;
+  const productosSinStock = productos.filter((p) => p.stock === 0).length;
+  const totalUsuarios = usuarios.length;
+
+  const handleChangeProducto = (e) => {
+    const { name, value } = e.target;
+    setProductoForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeUsuario = (e) => {
+    const { name, value } = e.target;
+    setUsuarioForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+    const abrirModalProductoCrear = () => {
+    setModoProducto("crear");
+    setProductoSeleccionadoId(null);
+    setProductoForm({
+      nombre: "",
+      categoria: "",
+      stock: 0,
+      descripcion: "",
+      fechaControl: "",
+      precio: 0,
+    });
+    setMostrarProductoModal(true);
+  };
+
   return (
     <Container fluid className="py-4">
       <Row className="mb-4">
