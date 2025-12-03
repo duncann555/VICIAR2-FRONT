@@ -15,8 +15,233 @@ import Modal from "react-bootstrap/Modal";
 import "../../styles/admin.css";
 
 function Admin() {
+  const productosIniciales = [
+    {
+      id: 1,
+      nombre: "PS5 Slim",
+      categoria: "Consolas",
+      stock: 25,
+      descripcion: "Descripción corta del producto.",
+      ultimoControl: "2025-11-30",
+      precio: 800000,
+    },
+    {
+      id: 2,
+      nombre: "Red Dead Redemption 2",
+      categoria: "Juego PC",
+      stock: 0,
+      descripcion: "Otro producto de prueba.",
+      ultimoControl: "2025-11-15",
+      precio: 30000,
+    },
+  ];
+
+  const usuariosIniciales = [
+    {
+      id: 1,
+      nombre: "Sebastian",
+      email: "sebaflomen@gmail.com",
+      rol: "admin",
+      estado: "Activo",
+    },
+    {
+      id: 2,
+      nombre: "Matias",
+      email: "matias555@gmail.com",
+      rol: "usuario",
+      estado: "Pendiente",
+    },
+  ];
+
+  const [productos, setProductos] = useState(productosIniciales);
+  const [usuarios, setUsuarios] = useState(usuariosIniciales);
+
   const [mostrarProductoModal, setMostrarProductoModal] = useState(false);
   const [mostrarUsuarioModal, setMostrarUsuarioModal] = useState(false);
+
+  const [modoProducto, setModoProducto] = useState("crear");
+  const [modoUsuario, setModoUsuario] = useState("crear");
+
+  const [productoSeleccionadoId, setProductoSeleccionadoId] = useState(null);
+  const [usuarioSeleccionadoId, setUsuarioSeleccionadoId] = useState(null);
+
+  const [productoForm, setProductoForm] = useState({
+    nombre: "",
+    categoria: "",
+    stock: 0,
+    descripcion: "",
+    fechaControl: "",
+    precio: 0,
+  });
+
+  const [usuarioForm, setUsuarioForm] = useState({
+    nombre: "",
+    email: "",
+    rol: "",
+    estado: "Activo",
+  });
+
+  const totalProductos = productos.length;
+  const productosSinStock = productos.filter((p) => p.stock === 0).length;
+  const totalUsuarios = usuarios.length;
+
+  const handleChangeProducto = (e) => {
+    const { name, value } = e.target;
+    setProductoForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeUsuario = (e) => {
+    const { name, value } = e.target;
+    setUsuarioForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const abrirModalProductoCrear = () => {
+    setModoProducto("crear");
+    setProductoSeleccionadoId(null);
+    setProductoForm({
+      nombre: "",
+      categoria: "",
+      stock: 0,
+      descripcion: "",
+      fechaControl: "",
+      precio: 0,
+    });
+    setMostrarProductoModal(true);
+  };
+
+  const abrirModalProductoEditar = (producto) => {
+    setModoProducto("editar");
+    setProductoSeleccionadoId(producto.id);
+    setProductoForm({
+      nombre: producto.nombre,
+      categoria: producto.categoria,
+      stock: producto.stock,
+      descripcion: producto.descripcion,
+      fechaControl: producto.ultimoControl,
+      precio: producto.precio,
+    });
+    setMostrarProductoModal(true);
+  };
+
+  const cerrarModalProducto = () => {
+    setMostrarProductoModal(false);
+  };
+
+  const abrirModalUsuarioCrear = () => {
+    setModoUsuario("crear");
+    setUsuarioSeleccionadoId(null);
+    setUsuarioForm({
+      nombre: "",
+      email: "",
+      rol: "",
+      estado: "Activo",
+    });
+    setMostrarUsuarioModal(true);
+  };
+
+  const abrirModalUsuarioEditar = (usuario) => {
+    setModoUsuario("editar");
+    setUsuarioSeleccionadoId(usuario.id);
+    setUsuarioForm({
+      nombre: usuario.nombre,
+      email: usuario.email,
+      rol: usuario.rol,
+      estado: usuario.estado,
+    });
+    setMostrarUsuarioModal(true);
+  };
+
+  const cerrarModalUsuario = () => {
+    setMostrarUsuarioModal(false);
+  };
+
+  const handleGuardarProducto = () => {
+    const productoParaGuardar = {
+      nombre: productoForm.nombre,
+      categoria: productoForm.categoria,
+      stock: Number(productoForm.stock),
+      descripcion: productoForm.descripcion,
+      ultimoControl: productoForm.fechaControl,
+      precio: Number(productoForm.precio),
+    };
+
+    if (modoProducto === "crear") {
+      const nuevoId =
+        productos.length > 0
+          ? Math.max(...productos.map((p) => p.id)) + 1
+          : 1;
+
+      setProductos((prev) => [
+        ...prev,
+        {
+          id: nuevoId,
+          ...productoParaGuardar,
+        },
+      ]);
+    } else if (modoProducto === "editar" && productoSeleccionadoId !== null) {
+      setProductos((prev) =>
+        prev.map((p) =>
+          p.id === productoSeleccionadoId ? { ...p, ...productoParaGuardar } : p
+        )
+      );
+    }
+
+    cerrarModalProducto();
+  };
+
+  const handleGuardarUsuario = () => {
+    const usuarioParaGuardar = {
+      nombre: usuarioForm.nombre,
+      email: usuarioForm.email,
+      rol: usuarioForm.rol,
+      estado: usuarioForm.estado,
+    };
+
+    if (modoUsuario === "crear") {
+      const nuevoId =
+        usuarios.length > 0 ? Math.max(...usuarios.map((u) => u.id)) + 1 : 1;
+
+      setUsuarios((prev) => [
+        ...prev,
+        {
+          id: nuevoId,
+          ...usuarioParaGuardar,
+        },
+      ]);
+    } else if (modoUsuario === "editar" && usuarioSeleccionadoId !== null) {
+      setUsuarios((prev) =>
+        prev.map((u) =>
+          u.id === usuarioSeleccionadoId ? { ...u, ...usuarioParaGuardar } : u
+        )
+      );
+    }
+
+    cerrarModalUsuario();
+  };
+
+  const handleEliminarProducto = (id) => {
+    setProductos((prev) => prev.filter((p) => p.id !== id));
+  };
+
+  const handleEliminarUsuario = (id) => {
+    setUsuarios((prev) => prev.filter((u) => u.id !== id));
+  };
+
+  const handleSuspenderUsuario = (id) => {
+    setUsuarios((prev) =>
+      prev.map((u) =>
+        u.id === id
+          ? { ...u, estado: u.estado === "Activo" ? "Suspendido" : "Activo" }
+          : u
+      )
+    );
+  };
 
   return (
     <Container fluid className="py-4">
@@ -284,13 +509,22 @@ function Admin() {
           <Form>
             <Form.Group className="mb-3" controlId="productoNombre">
               <Form.Label>Nombre del producto</Form.Label>
-              <Form.Control type="text" placeholder="Ej: Play Station 5" />
+              <Form.Control
+                type="text"
+                placeholder="Ingrese nombre del producto"
+              />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="productoCategoria">
-              <Form.Label>Categoría</Form.Label>
-              <Form.Control type="text" placeholder="Ej: Consola" />
-            </Form.Group>
+            <Form.Select>
+              <option value="">Seleccioná una categoría</option>
+
+              <option value="juegos-pc">Juegos de PC</option>
+              <option value="juegos-playstation">Juegos de PlayStation</option>
+              <option value="juegos-xbox">Juegos de Xbox</option>
+
+              <option value="consolas">Consolas</option>
+              <option value="accesorios">Accesorios</option>
+            </Form.Select>
 
             <Form.Group className="mb-3" controlId="productoStock">
               <Form.Label>Stock</Form.Label>
@@ -358,17 +592,6 @@ function Admin() {
                 <option>Activo</option>
                 <option>Suspendido</option>
               </Form.Select>
-            </Form.Group>
-
-            <Form.Group controlId="usuarioPassword" className="mb-3">
-              <Form.Label>Nueva contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Dejar vacío si no desea cambiarla"
-              />
-              <Form.Text className="text-muted text-center">
-                La contraseña actual no se puede ver por motivos de seguridad
-              </Form.Text>
             </Form.Group>
           </Form>
         </Modal.Body>
