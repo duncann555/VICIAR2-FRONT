@@ -15,7 +15,6 @@ import Modal from "react-bootstrap/Modal";
 import "../../styles/admin.css";
 
 function Admin() {
-
   const productosIniciales = [
     {
       id: 1,
@@ -37,7 +36,7 @@ function Admin() {
     },
   ];
 
-    const usuariosIniciales = [
+  const usuariosIniciales = [
     {
       id: 1,
       nombre: "Sebastian",
@@ -59,6 +58,28 @@ function Admin() {
 
   const [mostrarProductoModal, setMostrarProductoModal] = useState(false);
   const [mostrarUsuarioModal, setMostrarUsuarioModal] = useState(false);
+
+  const [modoProducto, setModoProducto] = useState("crear");
+  const [modoUsuario, setModoUsuario] = useState("crear");
+
+  const [productoSeleccionadoId, setProductoSeleccionadoId] = useState(null);
+  const [usuarioSeleccionadoId, setUsuarioSeleccionadoId] = useState(null);
+
+  const [productoForm, setProductoForm] = useState({
+    nombre: "",
+    categoria: "",
+    stock: 0,
+    descripcion: "",
+    fechaControl: "",
+    precio: 0,
+  });
+
+  const [usuarioForm, setUsuarioForm] = useState({
+    nombre: "",
+    email: "",
+    rol: "",
+    estado: "Activo",
+  });
 
   return (
     <Container fluid className="py-4">
