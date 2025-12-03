@@ -54,6 +54,9 @@ function Admin() {
     },
   ];
 
+  const [productos, setProductos] = useState(productosIniciales);
+  const [usuarios, setUsuarios] = useState(usuariosIniciales);
+
   const [mostrarProductoModal, setMostrarProductoModal] = useState(false);
   const [mostrarUsuarioModal, setMostrarUsuarioModal] = useState(false);
 
