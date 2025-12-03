@@ -195,6 +195,36 @@ function Admin() {
     cerrarModalProducto();
   };
 
+  const handleGuardarUsuario = () => {
+    const usuarioParaGuardar = {
+      nombre: usuarioForm.nombre,
+      email: usuarioForm.email,
+      rol: usuarioForm.rol,
+      estado: usuarioForm.estado,
+    };
+
+    if (modoUsuario === "crear") {
+      const nuevoId =
+        usuarios.length > 0 ? Math.max(...usuarios.map((u) => u.id)) + 1 : 1;
+
+      setUsuarios((prev) => [
+        ...prev,
+        {
+          id: nuevoId,
+          ...usuarioParaGuardar,
+        },
+      ]);
+    } else if (modoUsuario === "editar" && usuarioSeleccionadoId !== null) {
+      setUsuarios((prev) =>
+        prev.map((u) =>
+          u.id === usuarioSeleccionadoId ? { ...u, ...usuarioParaGuardar } : u
+        )
+      );
+    }
+
+    cerrarModalUsuario();
+  };
+
   return (
     <Container fluid className="py-4">
       <Row className="mb-4">
