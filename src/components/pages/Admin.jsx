@@ -115,6 +115,24 @@ function Admin() {
     setMostrarProductoModal(true);
   };
 
+  const abrirModalProductoEditar = (producto) => {
+    setModoProducto("editar");
+    setProductoSeleccionadoId(producto.id);
+    setProductoForm({
+      nombre: producto.nombre,
+      categoria: producto.categoria,
+      stock: producto.stock,
+      descripcion: producto.descripcion,
+      fechaControl: producto.ultimoControl,
+      precio: producto.precio,
+    });
+    setMostrarProductoModal(true);
+  };
+
+   const cerrarModalProducto = () => {
+    setMostrarProductoModal(false);
+  };
+
   return (
     <Container fluid className="py-4">
       <Row className="mb-4">
