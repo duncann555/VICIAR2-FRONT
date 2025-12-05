@@ -12,7 +12,7 @@ function ProductosTab({
   abrirModalProductoCrear,
   abrirModalProductoEditar,
   handleEliminarProducto,
-  handleSuspenderProducto, // 👈 NUEVO
+  handleSuspenderProducto,
   obtenerColorBadgeStock,
   formatearPrecio,
 }) {
