@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import "../../../styles/carrito.css"
 
 const Carrito = () => {
     const [paso, SetPaso] = useState(1);
@@ -25,7 +26,7 @@ const Carrito = () => {
                             {paso === 1 ? (
                                 <>
                                     <div className="card-body">
-                                        <h5 className='text-center'>Datos del cliente</h5>
+                                        <h5>Datos del cliente</h5>
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <Form.Group className="mb-3">
@@ -62,7 +63,7 @@ const Carrito = () => {
                                                     </Form.Text>
                                                 </Form.Group>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-md-6">
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>Telefono</Form.Label>
                                                     <Form.Control type="text" placeholder="Ej: 3863457824" />
@@ -71,7 +72,9 @@ const Carrito = () => {
                                                     </Form.Text>
                                                 </Form.Group>
                                             </div>
-                                            <Button className='btn btn-primary' onClick={siguienteFormulario}>Siguiente<i class="bi bi-arrow-right ms-1"></i></Button>
+                                            <div className="col-12 d-flex justify-content-end">
+                                                <Button className='btn btn-primary btn-siguiente' onClick={siguienteFormulario}>Siguiente<i class="bi bi-arrow-right ms-1"></i></Button>
+                                            </div>
                                         </div>
                                     </div>
                                 </>
@@ -109,7 +112,7 @@ const Carrito = () => {
                                                     </Form.Text>
                                                 </Form.Group>
                                             </div>
-                                            <div className="col-12">
+                                            <div className="col-md-6">
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>Domicilio</Form.Label>
                                                     <Form.Control type='text' placeholder='ej: Calle Elm Street' />
@@ -127,8 +130,10 @@ const Carrito = () => {
                                                     </Form.Text>
                                                 </Form.Group>
                                             </div>
-                                            <Button className='btn btn-primary' onClick={volverFormulario}><i class="bi bi-arrow-left me-1"></i>Atrás</Button>
-                                            <Button className='btn btn-primary mt-2' onClick={siguienteFormulario}>Siguiente<i class="bi bi-arrow-right ms-1"></i></Button>
+                                            <div className="col-12 mt-2 d-flex justify-content-between">
+                                                <Button className='btn btn-primary mt-2 mb-1' onClick={volverFormulario}><i class="bi bi-arrow-left me-1"></i>Atrás</Button>
+                                                <Button className='btn btn-primary mt-2 mb-1' onClick={siguienteFormulario}>Siguiente<i class="bi bi-arrow-right ms-1"></i></Button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +184,9 @@ const Carrito = () => {
                                                     </Form.Text>
                                                 </Form.Group>
                                             </div>
-                                            <Button className='btn btn-primary' onClick={volverFormulario}>Atrás</Button>
+                                        </div>
+                                        <div className="col-md-6 d-flex justify-content-start">
+                                            <Button className='btn btn-primary' onClick={volverFormulario}><i class="bi bi-arrow-left me-1"></i>Atrás</Button>
                                         </div>
                                     </div>
                                 </div>
