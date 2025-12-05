@@ -48,7 +48,7 @@ function UsuariosTab({
               onChange={(e) => setBusqueda(e.target.value)}
             />
             <Button
-              variant="outline-secondary"
+              className="btn-admin-primary"
               onClick={() => setBusqueda(busqueda.trim())}
             >
               Buscar
