@@ -67,7 +67,7 @@ function UsuariosTab({
                       bg={
                         user.estado === "Activo"
                           ? "success"
-                          : user.estado === "Pendiente"
+                          : user.estado === "Suspendido"
                           ? "warning"
                           : "secondary"
                       }
@@ -84,13 +84,17 @@ function UsuariosTab({
                     >
                       Editar
                     </Button>
-
                     <Button
-                      variant="outline-danger me-2"
+                      variant={
+                        user.estado === "Activo"
+                          ? "outline-warning"
+                          : "outline-success"
+                      }
                       size="sm"
+                      className="me-2"
                       onClick={() => handleSuspenderUsuario(user.id)}
                     >
-                      Suspender
+                      {user.estado === "Activo" ? "Suspender" : "Activar"}
                     </Button>
 
                     <Button

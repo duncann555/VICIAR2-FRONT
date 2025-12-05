@@ -12,7 +12,7 @@ function ProductosTab({
   abrirModalProductoCrear,
   abrirModalProductoEditar,
   handleEliminarProducto,
-  handleSuspenderProducto,      // 👈 NUEVO
+  handleSuspenderProducto, // 👈 NUEVO
   obtenerColorBadgeStock,
   formatearPrecio,
 }) {
@@ -55,6 +55,7 @@ function ProductosTab({
                 <th>Stock</th>
                 <th>Último control</th>
                 <th>Precio</th>
+                <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -88,17 +89,15 @@ function ProductosTab({
 
                   <td>{prod.ultimoControl}</td>
                   <td>{formatearPrecio(prod.precio)}</td>
+                  <td>
+                    <Badge
+                      bg={prod.estado === "Activo" ? "success" : "warning"}
+                    >
+                      {prod.estado}
+                    </Badge>
+                  </td>
 
                   <td>
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      className="me-2"
-                      onClick={() => handleSuspenderProducto(prod.id)}
-                    >
-                      Suspender
-                    </Button>
-
                     <Button
                       variant="outline-primary"
                       size="sm"
@@ -106,6 +105,14 @@ function ProductosTab({
                       onClick={() => abrirModalProductoEditar(prod)}
                     >
                       Editar
+                    </Button>
+                    <Button
+                      variant="outline-success"
+                      size="sm"
+                      className="me-2"
+                      onClick={() => handleSuspenderProducto(prod.id)}
+                    >
+                      {prod.estado === "Activo" ? "Suspender" : "Activar"}
                     </Button>
 
                     <Button
