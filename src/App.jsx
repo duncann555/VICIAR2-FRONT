@@ -5,10 +5,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inicio from "./components/pages/Inicio.jsx";
 import Carrito from "./components/pages/Carrito.jsx";
 import Register from "./components/pages/Register.jsx";
-import Nosotros from "./components/pages/Nosotros.jsx"
+import Nosotros from "./components/pages/Nosotros.jsx";
 import Contacto from "./components/pages/Contacto.jsx";
-import DetalleProducto from "./components/pages/DetalleProducto.jsx"
-import Error404 from "./components/pages/Error404.jsx"
+import DetalleProducto from "./components/pages/DetalleProducto.jsx";
+import Error404 from "./components/pages/Error404.jsx";
+import Productos from "./components/pages/Productos.jsx";
 
 function App() {
   return (
@@ -20,11 +21,11 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/nosotros" element={<Nosotros/>}/>
-          <Route path="/contacto" element={<Contacto/>}/>
-          <Route path="/detalleproducto" element={<DetalleProducto/>}/>
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/detalleproducto" element={<DetalleProducto />} />
           <Route path="*" element={<Error404 />} />
-
         </Routes>
       </main>
       <Footer />

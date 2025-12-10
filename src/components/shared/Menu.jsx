@@ -38,20 +38,16 @@ function Menu() {
                 Inicio
               </NavLink>
 
-              <NavLink to="/admin" className={getNavLinkClass}>
-                Admin
+              <NavLink to="/productos" className={getNavLinkClass}>
+                Productos
               </NavLink>
 
-              <NavLink to="/quienes-somos" className={getNavLinkClass}>
-                Quiénes somos
+              <NavLink to="/nosotros" className={getNavLinkClass}>
+                Nosotros
               </NavLink>
 
               <NavLink to="/contacto" className={getNavLinkClass}>
                 Contacto
-              </NavLink>
-
-              <NavLink to="/galeria" className={getNavLinkClass}>
-                Galería
               </NavLink>
 
               {/* Carrito */}
@@ -64,6 +60,9 @@ function Menu() {
                 }
               >
                 <i className="bi bi-cart3"></i>
+              </NavLink>
+              <NavLink to="/admin" className={getNavLinkClass}>
+                Administrador
               </NavLink>
 
               {/* Login */}
