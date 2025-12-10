@@ -1,8 +1,7 @@
 import CarruselPrincipal from "./inicio/CarruselPrincipal.jsx";
 import CardProducto from "./inicio/CardProducto.jsx";
 import CarruselOfertas from "./inicio/CarruselOfertas.jsx";
-import { Carousel, Col, Container, Row } from "react-bootstrap";
-import MultiCarousel from "react-multi-carousel";
+import { Col, Container, Row } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
 
 const Inicio = () => {
@@ -76,6 +75,7 @@ const Inicio = () => {
       categoria: "Consolas",
     },
   ];
+
   const categorias = [
     { id: 1, nombre: "Juegos Nintendo" },
     { id: 2, nombre: "Consolas" },
@@ -92,58 +92,73 @@ const Inicio = () => {
   );
 
   return (
-    <div>
+    <div className="inicio-wrapper">
       <CarruselPrincipal />
-      <Container>
-        <div className="mb-5">
-          <h1 className="py-3 text-center fw-bolder text-primary-emphasis">
-            Bienvenidos a ViciAR
+
+      <Container className="inicio-container">
+        {/* HERO */}
+        <header className="inicio-hero text-center mb-5">
+          <h1 className="inicio-hero-title">
+            Bienvenidos a <span className="texto-resaltado">ViciAR</span>
           </h1>
-          <h5 className="fw-medium text-center">
-            Donde no vendemos simples juegos. Vendemos las 3 de la mañana con
-            amigos y esa sensación de gloria
-            absoluta. <br/>Tu próxima obsesión está a un clic de distancia.
+          <h5 className="inicio-hero-subtitle">
+            No vendemos simples juegos: vendemos las 3 de la mañana con amigos
+            y esa sensación de gloria absoluta.
+            <br />
+            Tu próxima obsesión está a un clic de distancia.
           </h5>
-        </div>
-        <Row className="mb-4">
-          <Col xs={12}>
-            <div className="bg-dark text-white py-2 px-5 shadow w-100 d-flex align-items-center justify-content-center contenedorCat">
-              <h2 className="m-0 fw-bold tituloCat">{cat1.nombre}</h2>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          {productosSeccion1.length > 0 ? (
-            productosSeccion1.map((prod) => (
-              <CardProducto key={prod.id} producto={prod} />
-            ))
-          ) : (
-            <div className="col-12 text-center py-5">
-              <h4 className="text-muted">No hay stock en {cat1.nombre}</h4>
-            </div>
-          )}
-        </Row>
-        <Row className="py-5">
+        </header>
+
+        {/* SECCIÓN 1 */}
+        <section className="inicio-section mb-5">
+          <Row className="mb-4">
+            <Col xs={12}>
+              <div className="categoria-banner contenedorCat categoria-nintendo">
+        <h2 className="m-0 fw-bold tituloCat">{cat1.nombre}</h2>
+      </div>
+            </Col>
+          </Row>
+
+          <Row>
+            {productosSeccion1.length > 0 ? (
+              productosSeccion1.map((prod) => (
+                <CardProducto key={prod.id} producto={prod} />
+              ))
+            ) : (
+              <div className="col-12 text-center py-5">
+                <h4 className="text-muted">No hay stock en {cat1.nombre}</h4>
+              </div>
+            )}
+          </Row>
+        </section>
+
+        {/* CARRUSEL OFERTAS */}
+        <section className="inicio-section ofertas-section py-5">
           <CarruselOfertas />
-        </Row>
-        <Row className="mb-4">
-          <Col xs={12}>
-            <div className="bg-dark text-white py-2 px-5 shadow w-100 d-flex align-items-center justify-content-center contenedorCat">
-              <h2 className="m-0 fw-bold tituloCat">{cat2.nombre}</h2>
-            </div>
-          </Col>
-        </Row>
-        <Row className="mb-5">
-          {productosSeccion2.length > 0 ? (
-            productosSeccion2.map((prod) => (
-              <CardProducto key={prod.id} producto={prod} />
-            ))
-          ) : (
-            <div className="col-12 text-center py-5">
-              <h4 className="text-muted">No hay stock en {cat2.nombre}</h4>
-            </div>
-          )}
-        </Row>
+        </section>
+
+        {/* SECCIÓN 2 */}
+        <section className="inicio-section mb-5">
+          <Row className="mb-4">
+            <Col xs={12}>
+              <div className="categoria-banner contenedorCat categoria-consolas">
+        <h2 className="m-0 fw-bold tituloCat">{cat2.nombre}</h2>
+      </div>
+            </Col>
+          </Row>
+
+          <Row>
+            {productosSeccion2.length > 0 ? (
+              productosSeccion2.map((prod) => (
+                <CardProducto key={prod.id} producto={prod} />
+              ))
+            ) : (
+              <div className="col-12 text-center py-5">
+                <h4 className="text-muted">No hay stock en {cat2.nombre}</h4>
+              </div>
+            )}
+          </Row>
+        </section>
       </Container>
     </div>
   );

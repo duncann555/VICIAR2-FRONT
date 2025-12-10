@@ -1,40 +1,132 @@
+/* Fondo general del inicio: versión más clara */
+.inicio-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(
+    circle at top,
+    #eef2ff 0,    /* celeste/violeta muy clarito arriba */
+    #f9fafb 45%,  /* casi blanco en el centro */
+    #e5e7eb 100%  /* gris suave abajo */
+  );
+  padding-bottom: 3rem;
+}
+
+/* Ajuste del container para separarlo del carrusel */
+.inicio-container {
+  padding-top: 2.5rem;
+}
+
+/* HERO */
+.inicio-hero-title {
+  color: #111827; /* casi negro */
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inicio-hero-subtitle {
+  color: #4b5563; /* gris oscuro */
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.texto-resaltado {
+  background: linear-gradient(90deg, #9c6bff, #5be2ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Secciones generales */
+.inicio-section {
+  position: relative;
+}
+
+/* Banner de categoría (base) */
+.categoria-banner {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #f9fafb;
+  border-radius: 999px;
+  padding: 0.75rem 2.5rem;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nintendo – rojo */
+.categoria-nintendo {
+  background: linear-gradient(135deg, #e60012, #ff4b4b);
+  box-shadow: 0 16px 34px rgba(230, 0, 18, 0.55);
+}
+
+/* Consolas – azul/violeta “gamer” */
+.categoria-consolas {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  box-shadow: 0 16px 34px rgba(79, 70, 229, 0.55);
+}
+
+/* Skew que ya usabas para el banner */
+.contenedorCat {
+  transform: skewX(-12deg);
+  margin-left: 15px;
+}
+
+.tituloCat {
+  transform: skewX(12deg);
+}
+
+/* Sección de ofertas: un poco de separación y borde suave si querés aplicarlo */
+.ofertas-section {
+  border-radius: 1.5rem;
+  padding-inline: 0.75rem;
+}
+
+/* Fondo general del body (para que acompañe el inicio) */
+body {
+  background-color: #f3f4f6; /* gris clarito */
+}
+
+/* Carrusel principal de la home */
 .imagen-Carousel {
   width: 100%;
-  height: 450px;
+  height: 360px;      /* antes 450px */
   object-fit: cover;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon,
-.carousel-indicators [data-bs-target] {
-  filter: invert(100%);
+@media (max-width: 768px) {
+  .imagen-Carousel {
+    height: 240px;    /* más chico en mobile */
+  }
 }
 
-.contenedorImg{
-overflow: hidden;
-height: 200px 
-}
-
-.imgCard{
-  object-fit: cover; 
-  height: 100%; 
-  width: 100%
-}
-
-.contenedorCat{
-  transform: skewX(-12deg);
-   margin-left: 15px
-}
-
-.tituloCat{
-  transform: skewX(12deg)
-}
-
+/* Carrusel de ofertas (react-multi-carousel) */
 .imagen-ofertas {
   width: 100%;
-  height: 400px;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  height: 260px;           /* antes 400px */
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.55);
   display: block;
+}
+
+@media (max-width: 768px) {
+  .imagen-ofertas {
+    height: 200px;
+  }
+}
+
+/* Opcional: helpers para centrar items del carrusel de ofertas */
+.ofertas-carousel-container {
+  padding-inline: 0.5rem;
+}
+
+.ofertas-carousel-item {
+  display: flex;
+  justify-content: center;
+}
+
+.oferta-card {
+  max-width: 320px;
+  width: 100%;
 }
