@@ -1,0 +1,180 @@
+/* =========================
+   WRAPPER - MISMO FONDO INICIO/PRODUCTOS
+========================= */
+
+.contacto-wrapper {
+  min-height: 100vh;
+  padding-bottom: 3rem;
+
+  background: radial-gradient(
+    circle at top,
+    rgba(140, 120, 255, 0.15) 0%,
+    #d7d8e2 38%,
+    #c8cad3 100%
+  );
+}
+
+.contacto-container {
+  padding-top: 2.5rem;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.contacto-title {
+  color: #ff4b4b;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.contacto-subtitle {
+  color: #3b3f4c;
+  max-width: 720px;
+  margin: 0.5rem auto 0;
+  font-weight: 500;
+}
+
+/* Si ya lo tenés global, podés borrar esto */
+.texto-resaltado {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.contacto-card {
+  border: none;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+  transition: 0.25s ease;
+}
+
+.contacto-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.22);
+}
+
+.contacto-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #9c6bff, #5be2ff);
+  display: inline-block;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.contacto-input {
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+  transition: 0.25s;
+}
+
+.contacto-textarea {
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+  transition: 0.25s;
+}
+
+.contacto-input:focus,
+.contacto-textarea:focus {
+  border-color: #7a5bff;
+  box-shadow: 0 0 8px rgba(122, 91, 255, 0.25);
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.contacto-btn {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.5rem 1.2rem;
+  background: #111827;
+  border: 1px solid #111827;
+  transition: 0.2s ease;
+}
+
+.contacto-btn:hover {
+  background: #0f172a;
+  border-color: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+}
+
+/* =========================
+   MAPA
+========================= */
+
+.contacto-mapa-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.contacto-mapa {
+  width: 100%;
+  border: 0;
+  display: block;
+}
+
+/* =========================
+   INFO BOX
+========================= */
+
+.contacto-info {
+  margin-top: 8px;
+}
+
+.contacto-info-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contacto-info-item i {
+  font-size: 1.35rem;
+  color: #111827;
+  margin-top: 2px;
+}
+
+.contacto-info-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.contacto-info-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.contacto-info-sep {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 12px 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .contacto-container {
+    padding-top: 1.5rem;
+  }
+}
