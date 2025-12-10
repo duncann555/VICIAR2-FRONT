@@ -114,13 +114,14 @@
 
 .carrito-qty-btn {
   border-radius: 999px !important;
-  background-color: rgb(69, 69, 69);
+  background-color: black;
   color: white;
   border-color: transparent;
 }
 
 .carrito-qty-btn:hover {
   filter: brightness(1.05);
+  background: #0d86b6
 }
 
 .carrito-trash-btn {
@@ -138,7 +139,7 @@
 /* SUMMARY */
 .carrito-summary-title {
   font-weight: 700;
-  color: #111827;
+  color: #0d86b6;
 }
 
 .carrito-summary-note {
@@ -167,8 +168,8 @@
 }
 
 .carrito-primary-btn:hover {
-  background: #0f172a;
-  border-color: #0f172a;
+  background: #0d86b6;
+  border-color: #ffffff;
 }
 
 .carrito-secondary-btn {
@@ -182,7 +183,9 @@
 }
 
 .carrito-secondary-btn:hover {
-  background: rgba(17, 24, 39, 0.06);
+  background: rgba(4, 7, 16, 0.06);
+  border-color: #020406;
+  color: #020406;
 }
 
 .carrito-empty-btn {
