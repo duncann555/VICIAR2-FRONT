@@ -121,6 +121,7 @@ export default function Register() {
 
     if (Object.keys(errs).length > 0) return;
 
+    // Acá después vas a pegar el fetch al backend 👇
     setSuccess("Registro exitoso ✔");
     setValues(initialValues);
     setTouched({});
@@ -129,139 +130,169 @@ export default function Register() {
   return (
     <div className="reg-wrapper">
       <div className="reg-card">
-        <h1>Crear cuenta</h1>
-        <p className="reg-sub">Completá los datos para registrarte.</p>
+        {/* Panel izquierdo: copy lindo */}
+        <aside className="reg-aside">
+          <h2 className="reg-brand">Bienvenido a ViciAR</h2>
+          <p className="reg-aside-text">
+            Creá tu cuenta para guardar pedidos, seguir envíos
+            y tener tus juegos favoritos siempre a mano.
+          </p>
 
-        <form className="reg-form" onSubmit={handleSubmit}>
-          <div className="reg-row">
-            <div className="reg-field">
-              <label>Nombre completo</label>
-              <input
-                name="fullName"
-                value={values.fullName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Ej: Juan Pérez"
-              />
-              {touched.fullName && errors.fullName && (
-                <p className="reg-error">{errors.fullName}</p>
-              )}
+          <ul className="reg-benefits">
+            <li>✔ Checkout más rápido</li>
+            <li>✔ Historial de compras</li>
+            <li>✔ Ofertas pensadas para vos</li>
+          </ul>
+
+          <p className="reg-aside-login">
+            ¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a>
+          </p>
+        </aside>
+
+        {/* Panel derecho: formulario */}
+        <div className="reg-form-panel">
+          <h1 className="reg-title">Crear cuenta</h1>
+          <p className="reg-sub">Completá tus datos para registrarte.</p>
+
+          <form className="reg-form" onSubmit={handleSubmit}>
+            <div className="reg-row">
+              <div className="reg-field">
+                <label>Nombre completo</label>
+                <input
+                  name="fullName"
+                  value={values.fullName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Ej: Juan Pérez"
+                  autoComplete="name"
+                />
+                {touched.fullName && errors.fullName && (
+                  <p className="reg-error">{errors.fullName}</p>
+                )}
+              </div>
+
+              <div className="reg-field">
+                <label>Usuario</label>
+                <input
+                  name="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Nombre de usuario"
+                  autoComplete="username"
+                />
+                {touched.username && errors.username && (
+                  <p className="reg-error">{errors.username}</p>
+                )}
+              </div>
             </div>
 
             <div className="reg-field">
-              <label>Usuario</label>
+              <label>Email</label>
               <input
-                name="username"
-                value={values.username}
+                name="email"
+                value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="Nombre de usuario"
+                placeholder="email@ejemplo.com"
+                autoComplete="email"
               />
-              {touched.username && errors.username && (
-                <p className="reg-error">{errors.username}</p>
+              {touched.email && errors.email && (
+                <p className="reg-error">{errors.email}</p>
               )}
             </div>
-          </div>
 
-          <div className="reg-field">
-            <label>Email</label>
-            <input
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="email@ejemplo.com"
-            />
-            {touched.email && errors.email && (
-              <p className="reg-error">{errors.email}</p>
+            <div className="reg-row">
+              <div className="reg-field">
+                <label>DNI</label>
+                <input
+                  name="dni"
+                  value={values.dni}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Ej: 40123456"
+                  inputMode="numeric"
+                />
+                {touched.dni && errors.dni && (
+                  <p className="reg-error">{errors.dni}</p>
+                )}
+              </div>
+
+              <div className="reg-field">
+                <label>Teléfono</label>
+                <input
+                  name="telefono"
+                  value={values.telefono}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Ej: 3812345678"
+                  inputMode="tel"
+                />
+                {touched.telefono && errors.telefono && (
+                  <p className="reg-error">{errors.telefono}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="reg-row">
+              <div className="reg-field">
+                <label>Contraseña</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Mínimo 8 caracteres"
+                  autoComplete="new-password"
+                />
+                {touched.password && errors.password && (
+                  <p className="reg-error">{errors.password}</p>
+                )}
+              </div>
+
+              <div className="reg-field">
+                <label>Repetir contraseña</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Repetir contraseña"
+                  autoComplete="new-password"
+                />
+                {touched.confirmPassword && errors.confirmPassword && (
+                  <p className="reg-error">{errors.confirmPassword}</p>
+                )}
+              </div>
+            </div>
+
+            <label className="reg-check">
+              <input
+                type="checkbox"
+                name="terms"
+                checked={values.terms}
+                onChange={handleChange}
+              />
+              <span>Acepto los términos y condiciones</span>
+            </label>
+            {touched.terms && errors.terms && (
+              <p className="reg-error">{errors.terms}</p>
             )}
-          </div>
 
-          
-          <div className="reg-row">
-            <div className="reg-field">
-              <label>DNI</label>
-              <input
-                name="dni"
-                value={values.dni}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Ej: 40123456"
-              />
-              {touched.dni && errors.dni && (
-                <p className="reg-error">{errors.dni}</p>
-              )}
+            <button type="submit" className="reg-btn">
+              Crear cuenta
+            </button>
+
+            {success && <p className="reg-success">{success}</p>}
+
+            <div className="reg-login-link">
+              ¿Ya tenés cuenta?
+              <a href="/login"> Iniciar sesión</a>
             </div>
-
-            <div className="reg-field">
-              <label>Teléfono</label>
-              <input
-                name="telefono"
-                value={values.telefono}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Ej: 3812345678"
-              />
-              {touched.telefono && errors.telefono && (
-                <p className="reg-error">{errors.telefono}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="reg-row">
-            <div className="reg-field">
-              <label>Contraseña</label>
-              <input
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Mínimo 8 caracteres"
-              />
-              {touched.password && errors.password && (
-                <p className="reg-error">{errors.password}</p>
-              )}
-            </div>
-
-            <div className="reg-field">
-              <label>Repetir contraseña</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                value={values.confirmPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Repetir contraseña"
-              />
-              {touched.confirmPassword && errors.confirmPassword && (
-                <p className="reg-error">{errors.confirmPassword}</p>
-              )}
-            </div>
-          </div>
-
-          <label className="reg-check">
-            <input
-              type="checkbox"
-              name="terms"
-              checked={values.terms}
-              onChange={handleChange}
-            />
-            Acepto los términos y condiciones
-          </label>
-          {touched.terms && errors.terms && (
-            <p className="reg-error">{errors.terms}</p>
-          )}
-
-          <button className="reg-btn">Crear cuenta</button>
-
-          {success && <p className="reg-success">{success}</p>}
-
-          <div className="reg-login-link">
-            ¿Ya tenés cuenta?
-            <a href="/login"> Iniciar sesión</a>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

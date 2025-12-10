@@ -1,54 +1,76 @@
-import React, { use, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import "../../../styles/carrito.css"
-import { InputGroup, Form } from 'react-bootstrap';
-import { useSearchParams } from 'react-router';
+import React, { useState } from "react";
+import { Button, Card, InputGroup, Form } from "react-bootstrap";
+import "../../../styles/carrito.css";
 
 const ItemProducto = ({ nombre, precio, imagen }) => {
-    const [contador, setContador] = useState(1);
+  const [contador, setContador] = useState(1);
 
-    const incrementarContador = () => {
-        setContador(contador + 1);
-    }
+  const incrementarContador = () => {
+    setContador((prev) => prev + 1);
+  };
 
-    const decrementarContador = () => {
-        setContador(contador - 1);
-    }
+  const decrementarContador = () => {
+    setContador((prev) => (prev > 1 ? prev - 1 : 1));
+  };
 
-    return (
-        <div className='mt-3'>
-            <Card className='d-flex flex-lg-row border bg-body-secondary'>
-                <div className='d-flex justify-content-center align-items-center'>
-                    <Card.Img src={imagen} className='img-producto-carrito ms-2' />
-                </div>
-                <Card.Body>
-                    <div className='d-flex justify-content-between'>
-                        <Card.Title>{nombre}</Card.Title>
-                        <p className='mb-3 text-black fs-5 ms-1'>${precio}</p>
-                    </div>
-                    <p>Cantidad</p>
-                    <InputGroup className='mb-3' style={{ width: '130px' }}>
-                        <Button className='btn btn-navegacion' onClick={decrementarContador}><i className="bi bi-dash-lg"></i></Button>
-                        <Form.Control
-                            value={contador}
-                            readOnly
-                            type="number"
-                            min="1"
-                            className='text-center'
-                        />
-                        <Button className='btn btn-navegacion' onClick={incrementarContador}><i className="bi bi-plus-lg"></i></Button>
-                    </InputGroup>
-                    <div className='d-flex justify-content justify-content-md-end'>
-                        {/* Boton para dispositivos large */}
-                        <Button className='btn btn-danger me-2 d-block d-none d-md-none'><i className="bi bi-trash3"></i></Button>
-                        {/* Boton para dispositivos medianos y pequeños */}
-                        <Button className='btn btn-danger me-2 d-lg-block btn-eliminar'><i className="bi bi-trash3"></i></Button>
-                    </div>
-                </Card.Body>
-            </Card>
+  return (
+    <div className="mt-3">
+      <Card className="carrito-item-card border-0 bg-body-secondary">
+        <div className="d-flex flex-column flex-lg-row align-items-stretch">
+          <div className="d-flex justify-content-center align-items-center p-2">
+            <Card.Img src={imagen} className="img-producto-carrito" />
+          </div>
+
+          <Card.Body className="d-flex flex-column">
+            <div className="d-flex justify-content-between align-items-start mb-1">
+              <Card.Title className="carrito-item-title">
+                {nombre}
+              </Card.Title>
+              <p className="mb-0 text-black fs-5 ms-2 fw-semibold">
+                ${precio}
+              </p>
+            </div>
+
+            <div className="mt-2">
+              <p className="mb-1">Cantidad</p>
+              <InputGroup className="mb-2 carrito-cantidad-group">
+                <Button
+                  type="button"
+                  className="btn-navegacion"
+                  onClick={decrementarContador}
+                >
+                  <i className="bi bi-dash-lg"></i>
+                </Button>
+                <Form.Control
+                  value={contador}
+                  readOnly
+                  type="number"
+                  min="1"
+                  className="text-center"
+                />
+                <Button
+                  type="button"
+                  className="btn-navegacion"
+                  onClick={incrementarContador}
+                >
+                  <i className="bi bi-plus-lg"></i>
+                </Button>
+              </InputGroup>
+            </div>
+
+            <div className="d-flex justify-content-end mt-1">
+              <Button
+                type="button"
+                className="btn btn-danger btn-eliminar"
+              >
+                <i className="bi bi-trash3"></i>
+              </Button>
+            </div>
+          </Card.Body>
         </div>
-    );
+      </Card>
+    </div>
+  );
 };
 
 export default ItemProducto;

@@ -1,39 +1,54 @@
-import { Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router";
+// src/components/pages/inicio/CardProducto.jsx
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 
-const CardProducto = ({ producto }) => {
-  const { id, nombreProducto, precio, imagen, categoria } = producto;
+function CardProducto({ producto }) {
+  const { nombreProducto, precio, imagen, categoria } = producto;
+
+  const formatearPrecio = (valor) =>
+    valor.toLocaleString("es-AR", { style: "currency", currency: "ARS" });
 
   return (
-    <Col md={4} lg={3} className="mb-3">
-      <Card className="h-100 shadow">
-        <div className="contenedorImg">
+    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
+      <Card className="producto-card h-100">
+        {/* Imagen */}
+        <div className="producto-img-wrapper">
           <Card.Img
             variant="top"
             src={imagen}
             alt={nombreProducto}
-            className="imgCard"
+            className="producto-img"
           />
+          <span className="producto-categoria-badge">{categoria}</span>
         </div>
+
+        {/* Cuerpo */}
         <Card.Body className="d-flex flex-column">
-          <Card.Title className="fs-5">{nombreProducto}</Card.Title>
-          <Card.Text className="mt-auto">
-            <span className="text-muted small">{categoria}</span>
-            <br className="mb-2" />
-            <span className="fw-bold fs-5">${precio.toLocaleString()}</span>
-          </Card.Text>
+          <Card.Title className="producto-titulo">
+            {nombreProducto}
+          </Card.Title>
+
+          <div className="mt-2 mb-3">
+            <span className="producto-precio">
+              {formatearPrecio(precio)}
+            </span>
+          </div>
+
+          <div className="mt-auto">
+            <Button
+              className="w-100 producto-btn"
+              type="button"
+              // más adelante acá podés navegar al detalle
+              onClick={() => {}}
+            >
+              Ver detalle
+            </Button>
+          </div>
         </Card.Body>
-        <Card.Footer className="text-end bg-white border-top-0">
-          <Button variant="success" size="sm" className="me-2">
-            <i className="bi bi-cart-plus-fill"></i> Agregar
-          </Button>
-          <Link to="/detalleproducto" className="btn btn-primary btn-sm">
-            Ver más
-          </Link>
-        </Card.Footer>
       </Card>
     </Col>
   );
-};
+}
 
 export default CardProducto;
