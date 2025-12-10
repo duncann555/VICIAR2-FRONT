@@ -1,8 +1,5 @@
-// =======================================================
-//  CARRITO COMPLETO FUNCIONANDO CON LOCALSTORAGE
-// =======================================================
-
-import { useState, useEffect } from "react";
+// src/components/pages/carrito/Carrito.jsx
+import { useMemo, useState } from "react";
 import {
   Button,
   Card,
@@ -12,12 +9,12 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
+
 import "../../styles/carrito.css";
 
-// =======================================================
-//  DATA INICIAL (Solo si no hay localStorage)
-// =======================================================
-
+// ===============================
+//  DATA MOCK INICIAL
+// ===============================
 const itemsIniciales = [
   {
     id: 1,
@@ -37,44 +34,88 @@ const itemsIniciales = [
   },
 ];
 
-// =======================================================
-//  HELPERS LOCALSTORAGE
-// =======================================================
+// ===============================
+//  ITEM INTERNO
+// ===============================
+function CarritoItem({
+  item,
+  onIncrementar,
+  onDecrementar,
+  onEliminar,
+  formatearPrecio,
+}) {
+  return (
+    <div className="carrito-item-row">
+      <div className="carrito-item-img-wrapper">
+        <img
+          src={item.imagen}
+          alt={item.nombre}
+          className="carrito-item-img"
+          loading="lazy"
+        />
+      </div>
 
-const leerLS = (clave, def) => {
-  const data = localStorage.getItem(clave);
-  return data ? JSON.parse(data) : def;
-};
+      <div className="carrito-item-info">
+        <h6 className="carrito-item-name">{item.nombre}</h6>
 
-const guardarLS = (clave, data) => {
-  localStorage.setItem(clave, JSON.stringify(data));
-};
+        <div className="d-flex align-items-center gap-2 mt-2">
+          <Button
+            variant="outline-danger"
+            size="sm"
+            className="carrito-trash-btn"
+            onClick={() => onEliminar(item.id)}
+            aria-label="Eliminar producto"
+            title="Eliminar"
+          >
+            <i className="bi bi-trash3"></i>
+          </Button>
 
-// =======================================================
-//  COMPONENTE PRINCIPAL CARRITO
-// =======================================================
+          <InputGroup size="sm" className="carrito-qty-group ">
+            <Button
+              variant="outline-secondary"
+              className="carrito-qty-btn me-2"
+              onClick={() => onDecrementar(item.id)}
+              aria-label="Disminuir cantidad"
+              title="Disminuir"
+            >
+              −
+            </Button>
 
-const Carrito = () => {
-  // 1) Cargar carrito desde LS (o usar itemsIniciales)
-  const [items, setItems] = useState(() =>
-    leerLS("ls_carrito", itemsIniciales)
+            <Form.Control
+              value={item.cantidad}
+              readOnly
+              className="text-center"
+              aria-label="Cantidad"
+            />
+
+            <Button
+              variant="outline-secondary"
+              className="carrito-qty-btn ms-2"
+              onClick={() => onIncrementar(item.id)}
+              aria-label="Aumentar cantidad"
+              title="Aumentar"
+            >
+              +
+            </Button>
+          </InputGroup>
+        </div>
+      </div>
+
+      <div className="carrito-item-price">
+        {formatearPrecio(item.precio * item.cantidad)}
+      </div>
+    </div>
   );
+}
 
-  // Cada vez que cambia "items", se guarda en LS
-  useEffect(() => {
-    guardarLS("ls_carrito", items);
-  }, [items]);
-
-  // =====================================================
-  //  FORMATEADOR DE PRECIOS
-  // =====================================================
+// ===============================
+//  COMPONENTE PRINCIPAL
+// ===============================
+const Carrito = () => {
+  const [items, setItems] = useState(itemsIniciales);
 
   const formatearPrecio = (valor) =>
     valor.toLocaleString("es-AR", { style: "currency", currency: "ARS" });
-
-  // =====================================================
-  //  FUNCIONES DE CANTIDAD
-  // =====================================================
 
   const incrementarCantidad = (id) => {
     setItems((prev) =>
@@ -94,118 +135,97 @@ const Carrito = () => {
     );
   };
 
-  // =====================================================
-  //  ELIMINAR ITEM
-  // =====================================================
-
   const eliminarItem = (id) => {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // =====================================================
-  //  TOTALES
-  // =====================================================
+  const vaciarCarrito = () => setItems([]);
 
-  const totalProductos = items.reduce((acc, item) => acc + item.cantidad, 0);
+  const totalProductos = useMemo(
+    () => items.reduce((acc, item) => acc + item.cantidad, 0),
+    [items]
+  );
 
-  const total = items.reduce(
-    (acc, item) => acc + item.cantidad * item.precio,
-    0
+  const total = useMemo(
+    () => items.reduce((acc, item) => acc + item.cantidad * item.precio, 0),
+    [items]
   );
 
   const handleVolver = () => window.history.back();
 
-  // =====================================================
-  //  RENDER
-  // =====================================================
-
   return (
     <section className="carrito-wrapper">
-      <Container className="carrito-container">
-        {/* ENCABEZADO */}
-        <Row className="align-items-center mb-4">
+      <Container className="carrito-container py-4">
+        <Row className="align-items-center mb-3">
           <Col xs="auto">
-            <button type="button" className="carrito-back-btn" onClick={handleVolver}>
+            <button
+              type="button"
+              className="carrito-back-btn"
+              onClick={handleVolver}
+            >
               <i className="bi bi-chevron-left"></i>
-              <span>Mi carrito</span>
+              <span>Volver</span>
             </button>
           </Col>
         </Row>
 
+        <header className="text-center text-md-start mb-4">
+          <h1 className="carrito-hero-title">
+            Mi <span className="carrito-texto-resaltado">carrito</span>
+          </h1>
+          <p className="carrito-hero-subtitle mb-0">
+            Revisá tus productos y cerrá la compra como un campeón.
+          </p>
+        </header>
+
         <Row className="gy-4">
-          {/* COLUMNA IZQUIERDA */}
           <Col xs={12} md={8}>
             <Card className="carrito-items-card">
               <Card.Body>
                 {items.length === 0 ? (
-                  <p className="text-center text-muted mb-0">
-                    Tu carrito está vacío.
-                  </p>
+                  <div className="text-center py-4">
+                    <p className="text-muted mb-3">Tu carrito está vacío.</p>
+                    <Button
+                      type="button"
+                      className="carrito-secondary-btn"
+                      onClick={handleVolver}
+                    >
+                      Ver productos
+                    </Button>
+                  </div>
                 ) : (
-                  items.map((item) => (
-                    <div key={item.id} className="carrito-item-row">
-                      <div className="carrito-item-img-wrapper">
-                        <img
-                          src={item.imagen}
-                          alt={item.nombre}
-                          className="carrito-item-img"
-                        />
-                      </div>
+                  <>
+                    {items.map((item) => (
+                      <CarritoItem
+                        key={item.id}
+                        item={item}
+                        onIncrementar={incrementarCantidad}
+                        onDecrementar={decrementarCantidad}
+                        onEliminar={eliminarItem}
+                        formatearPrecio={formatearPrecio}
+                      />
+                    ))}
 
-                      <div className="carrito-item-info">
-                        <h6 className="carrito-item-name">{item.nombre}</h6>
-
-                        <div className="d-flex align-items-center gap-2 mt-2">
-                          <Button
-                            variant="outline-danger"
-                            size="sm"
-                            className="carrito-trash-btn"
-                            onClick={() => eliminarItem(item.id)}
-                          >
-                            <i className="bi bi-trash3"></i>
-                          </Button>
-
-                          <InputGroup size="sm" className="carrito-qty-group">
-                            <Button
-                              variant="outline-secondary"
-                              className="carrito-qty-btn"
-                              onClick={() => decrementarCantidad(item.id)}
-                            >
-                              −
-                            </Button>
-
-                            <Form.Control
-                              value={item.cantidad}
-                              readOnly
-                              className="text-center"
-                            />
-
-                            <Button
-                              variant="outline-secondary"
-                              className="carrito-qty-btn"
-                              onClick={() => incrementarCantidad(item.id)}
-                            >
-                              +
-                            </Button>
-                          </InputGroup>
-                        </div>
-                      </div>
-
-                      <div className="carrito-item-price">
-                        {formatearPrecio(item.precio * item.cantidad)}
-                      </div>
+                    <div className="d-flex justify-content-end mt-3">
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        className="carrito-empty-btn"
+                        onClick={vaciarCarrito}
+                      >
+                        Vaciar carrito
+                      </Button>
                     </div>
-                  ))
+                  </>
                 )}
               </Card.Body>
             </Card>
           </Col>
 
-          {/* COLUMNA DERECHA RESUMEN */}
           <Col xs={12} md={4}>
             <Card className="carrito-summary-card">
               <Card.Body>
-                <h5 className="mb-3">Resumen</h5>
+                <h5 className="mb-3 carrito-summary-title">Resumen</h5>
 
                 <div className="d-flex justify-content-between mb-1">
                   <span>
@@ -231,11 +251,19 @@ const Carrito = () => {
                   *Precio abonando con depósito o transferencia.
                 </p>
 
-                <Button type="button" className="w-100 carrito-primary-btn mb-2">
+                <Button
+                  type="button"
+                  className="w-100 carrito-primary-btn mb-2"
+                  disabled={items.length === 0}
+                >
                   Iniciar compra
                 </Button>
 
-                <Button type="button" className="w-100 carrito-secondary-btn">
+                <Button
+                  type="button"
+                  className="w-100 carrito-secondary-btn"
+                  onClick={handleVolver}
+                >
                   Ver más productos
                 </Button>
               </Card.Body>

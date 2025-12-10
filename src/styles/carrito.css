@@ -1,22 +1,30 @@
-/* LAYOUT GENERAL DEL CARRITO */
+/* =========================
+   CARRITO - ESTÉTICA VICIAR
+========================= */
+
 .carrito-wrapper {
   min-height: calc(100vh - 80px);
-  background-color: #f3f4f6;
-  padding: 2rem 0 3rem;
+  padding: 1.5rem 0 3rem;
+  background: radial-gradient(
+    circle at top,
+    rgba(140, 120, 255, 0.12) 0%,
+    #d7d8e2 38%,
+    #c8cad3 100%
+  );
 }
 
 .carrito-container {
   max-width: 1140px;
 }
 
-/* BOTÓN "VOLVER / MI CARRITO" */
+/* BACK */
 .carrito-back-btn {
   border: none;
   background: transparent;
   color: #111827;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0;
@@ -27,18 +35,39 @@
   font-size: 1.1rem;
 }
 
-/* CARD PRINCIPAL DE ITEMS */
-.carrito-items-card {
-  border-radius: 1.5rem;
-  border: none;
-  background-color: #ffffff;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+/* HERO */
+.carrito-hero-title {
+  color: #111827;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
 }
 
-/* UNA FILA POR CADA ITEM */
+.carrito-hero-subtitle {
+  color: #4b5563;
+  max-width: 720px;
+}
+
+.carrito-texto-resaltado {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* CARDS */
+.carrito-items-card,
+.carrito-summary-card {
+  border-radius: 1.5rem;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+/* ITEMS */
 .carrito-item-row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 110px 1fr auto;
   align-items: center;
   gap: 1.25rem;
   padding: 1.1rem 0;
@@ -49,15 +78,15 @@
   border-bottom: none;
 }
 
-/* IMAGEN DEL ITEM */
 .carrito-item-img-wrapper {
   width: 110px;
-  height: 70px;
-  border-radius: 0.75rem;
-  background-color: #f3f4f6;
+  height: 80px;
+  border-radius: 0.9rem;
+  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .carrito-item-img {
@@ -66,7 +95,6 @@
   object-fit: contain;
 }
 
-/* INFO DEL ITEM */
 .carrito-item-info {
   display: flex;
   flex-direction: column;
@@ -79,33 +107,38 @@
   color: #111827;
 }
 
-/* CONTROLES DE CANTIDAD */
+/* QTY */
 .carrito-qty-group {
   max-width: 170px;
 }
 
 .carrito-qty-btn {
   border-radius: 999px !important;
+  background-color: rgb(69, 69, 69);
+  color: white;
+  border-color: transparent;
+}
+
+.carrito-qty-btn:hover {
+  filter: brightness(1.05);
 }
 
 .carrito-trash-btn {
   border-radius: 999px;
 }
 
-/* PRECIO A LA DERECHA */
+/* PRICE */
 .carrito-item-price {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   color: #111827;
   white-space: nowrap;
 }
 
-/* CARD DE RESUMEN */
-.carrito-summary-card {
-  border-radius: 1.5rem;
-  border: none;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-  background-color: #ffffff;
+/* SUMMARY */
+.carrito-summary-title {
+  font-weight: 700;
+  color: #111827;
 }
 
 .carrito-summary-note {
@@ -115,7 +148,7 @@
 
 .carrito-summary-total {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .carrito-summary-footnote {
@@ -123,30 +156,37 @@
   color: #6b7280;
 }
 
-/* BOTONES RESUMEN */
+/* BUTTONS */
 .carrito-primary-btn {
-  background-color: #f97316; /* naranja */
-  border-color: #f97316;
-  font-weight: 600;
   border-radius: 999px;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  background: #111827;
+  border: 1px solid #111827;
+  transition: 0.2s ease;
 }
 
 .carrito-primary-btn:hover {
-  background-color: #ea580c;
-  border-color: #ea580c;
+  background: #0f172a;
+  border-color: #0f172a;
 }
 
 .carrito-secondary-btn {
-  background-color: transparent;
-  color: #f97316;
-  border: 1px solid #f97316;
-  font-weight: 600;
   border-radius: 999px;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  background: transparent;
+  color: #111827;
+  border: 1px solid #111827;
+  transition: 0.2s ease;
 }
 
 .carrito-secondary-btn:hover {
-  background-color: rgba(249, 115, 22, 0.06);
+  background: rgba(17, 24, 39, 0.06);
 }
+
+.carrito-empty-btn {
+  border-radius: 999px;}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -164,4 +204,3 @@
     text-align: right;
   }
 }
-    

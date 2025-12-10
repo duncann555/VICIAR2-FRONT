@@ -3,7 +3,7 @@ import Footer from "./components/shared/Footer.jsx";
 import Admin from "./components/pages/Admin.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inicio from "./components/pages/Inicio.jsx";
-import Carrito from "./components/pages/carrito/Carrito.jsx";
+import Carrito from "./components/pages/Carrito.jsx";
 import Register from "./components/pages/Register.jsx";
 import Nosotros from "./components/pages/Nosotros.jsx"
 import Contacto from "./components/pages/Contacto.jsx";
