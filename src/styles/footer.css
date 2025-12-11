@@ -1,13 +1,85 @@
-.footer-bg-color{
-  background-color: #27187E !important;
+/* Fondo del footer */
+.footer-container {
+  background: #1a1a1a;
+  color: white;
 }
-.redes{
-  position: relative;
-  bottom: 15px;
+
+/* Línea superior naranja */
+.footer-top-line {
+  width: 100%;
+  height: 4px;
+  background: #ff6500;
 }
-/*Media query para dispositivos medianos*/
-@media(min-width: 768px){
-  .redes{
-    bottom: 8px;
+
+/* Contenido principal */
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.footer-logo {
+  width: 130px;
+}
+
+/* Títulos */
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ff6500;
+}
+
+/* Links */
+.footer-link {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: 0.2s;
+}
+
+.footer-link:hover {
+  color: #ff6500;
+}
+
+/* Texto de contacto */
+.footer-contact {
+  margin: 4px 0;
+  color: #ddd;
+}
+
+.text-orange {
+  color: #ff6500;
+}
+
+/* Redes sociales */
+.footer-socials a {
+  color: #ccc;
+  margin-right: 15px;
+  font-size: 1.5rem;
+  transition: 0.25s;
+}
+
+.footer-socials a:hover {
+  color: #ff6500;
+}
+
+/* Abajo de todo */
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 8px;
+  color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
   }
 }

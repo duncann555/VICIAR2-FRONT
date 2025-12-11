@@ -42,10 +42,6 @@ function Menu() {
 
             {/* DERECHA — CARRITO + LOGIN */}
             <div className="col-3 d-flex justify-content-end align-items-center">
-              <NavLink to="/carrito" className="nav-icon-button me-3">
-                <i className="bi bi-cart3"></i>
-              </NavLink>
-
               <button
                 className="btn-login-modern"
                 onClick={() => setShowLogin(true)}
@@ -53,6 +49,10 @@ function Menu() {
                 <i className="bi bi-person"></i>
                 <span className="d-none d-lg-inline ms-1">Ingresar</span>
               </button>
+
+              <NavLink to="/carrito" className="nav-icon-button ms-3">
+                <i className="bi bi-cart3"></i>
+              </NavLink>
             </div>
           </div>
         </Container>
@@ -60,7 +60,7 @@ function Menu() {
 
       {/* NAVBAR INFERIOR (links) */}
       <div className="lower-navbar">
-        <Container className="d-flex gap-4">
+        <Container className="d-flex gap-4 justify-content-center">
           <NavLink to="/" className={getNavLinkClass}>
             Inicio
           </NavLink>

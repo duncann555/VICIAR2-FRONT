@@ -205,19 +205,22 @@ function CardProducto({ producto }) {
 // ===============================
 function CarruselPrincipal() {
   return (
-    <Carousel>
-      <Carousel.Item>
-        <img className="imagen-Carousel" src={banner1} alt="banner 1" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="imagen-Carousel" src={banner2} alt="banner 2" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="imagen-Carousel" src={banner3} alt="banner 3" />
-      </Carousel.Item>
-    </Carousel>
+    <div className="carousel-wrapper">
+      <Carousel fade indicators className="main-carousel">
+        <Carousel.Item>
+          <img className="carousel-img" src={banner1} alt="banner 1" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="carousel-img" src={banner2} alt="banner 2" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="carousel-img" src={banner3} alt="banner 3" />
+        </Carousel.Item>
+      </Carousel>
+    </div>
   );
 }
+
 
 // ===============================
 //  CarruselOfertas (interno)
