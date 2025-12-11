@@ -6,7 +6,7 @@ import "../../styles/menu.css";
 import logoS2 from "../../assets/logoS2.png";
 
 import { useState } from "react";
-import ModalLogin from "./ModalLogin";
+import Login from "../pages/Login.jsx";
 
 function Menu() {
   const [showLogin, setShowLogin] = useState(false);
@@ -81,7 +81,7 @@ function Menu() {
       </Navbar>
 
       {/* MODAL LOGIN */}
-      <ModalLogin show={showLogin} onClose={() => setShowLogin(false)} />
+      <Login show={showLogin} onClose={() => setShowLogin(false)} />
     </>
   );
 }
