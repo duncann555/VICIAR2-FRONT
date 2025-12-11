@@ -9,11 +9,12 @@ const Footer = () => {
         <div className="col-12 col-md-4 d-flex flex-column mt-2">
           <h5 className="mb-2">Secciones</h5>
           <Link
-            to="/quienes-somos"
+            to="/nosotros"
             className="text-white text-decoration-none mt-1 underline-hover"
           >
-            Quiénes somos
+            Nosotros
           </Link>
+
           <Link
             to="/contacto"
             className="text-white text-decoration-none mt-3 underline-hover"

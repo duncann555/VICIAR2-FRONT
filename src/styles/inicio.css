@@ -3,10 +3,16 @@
 ========================= */
 
 body {
-  background: linear-gradient(180deg, #0d0f1a 0%, #111427 40%, #0c0e1a 100%);
-  background-attachment: fixed;
-  color: #e5e7eb;
+  background: linear-gradient(
+    180deg,
+    #0d0f1a 0%,
+    #171a2e 35%,
+    #1b1e36 65%,
+    #0c0e1a 100%
+  );
 }
+
+
 
 /* =========================
    CONTENEDOR PRINCIPAL
@@ -15,13 +21,7 @@ body {
 .inicio-wrapper {
   min-height: 100vh;
   padding-bottom: 3rem;
-
-  background: radial-gradient(
-    circle at top,
-    rgba(140, 120, 255, 0.15) 0%,
-    #d7d8e2 38%,
-    #c8cad3 100%
-  );
+  background-color: #F2F2F2;  /* Fondo estilo CompraGamer */
 }
 
 .inicio-container {
@@ -309,6 +309,9 @@ body {
     opacity: 1;
   }
 }
+
+
+
 
 /* Respeta accesibilidad */
 @media (prefers-reduced-motion: reduce) {

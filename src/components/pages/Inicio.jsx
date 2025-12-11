@@ -429,7 +429,7 @@ export default function Inicio() {
 
               return (
                 <section key={cat.id} className="mb-5">
-                  <div className="mb-4 d-flex justify-content-start">
+                  <div className="mb-4 d-flex justify-content-center">
                     <BannerCategoria texto={`Más vendido de ${cat.nombre}`} tipo={tipo} />
                   </div>
 
@@ -454,7 +454,7 @@ export default function Inicio() {
 
             {/* OFERTAS */}
             <section className="mb-5">
-              <div className="mb-4 d-flex justify-content-start">
+              <div className="mb-4 d-flex justify-content-center">
                 <BannerCategoria texto="Ofertas" />
               </div>
 

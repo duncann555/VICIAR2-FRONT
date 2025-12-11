@@ -1,9 +1,10 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
 import { NavLink } from "react-router-dom";
 import "../../styles/menu.css";
-import logoS2 from "../../assets/logoS2.png";
+import LOGO from "../../assets/LOGO.png";
 
 import { useState } from "react";
 import Login from "../pages/Login.jsx";
@@ -12,73 +13,62 @@ function Menu() {
   const [showLogin, setShowLogin] = useState(false);
 
   const getNavLinkClass = ({ isActive }) =>
-    `nav-link opcion-nav fw-bold ${isActive ? "active" : ""}`;
+    `nav-link nav-item-lower ${isActive ? "active-lower" : ""}`;
 
   return (
     <>
-      <Navbar
-        expand="lg"
-        className="navbar-bg-color py-lg-3 py-md-2"
-        sticky="top"
-      >
-        <Container className="position-relative">
-          {/* Logo */}
-          <Navbar.Brand as={NavLink} to="/" className="pb-2">
-            <img src={logoS2} alt="Logo" className="img-navbar" />
-          </Navbar.Brand>
+      {/* NAVBAR SUPERIOR */}
+      <Navbar expand="lg" className="navbar-modern shadow-sm" sticky="top">
+        <Container>
+          <div className="row w-100 align-items-center">
+            {/* IZQUIERDA — LOGO */}
+            <div className="col-3 d-flex align-items-center">
+              <Navbar.Brand as={NavLink} to="/" className="navbar-logo me-3">
+                <img src={LOGO} alt="Logo" className="img-navbar" />
+              </Navbar.Brand>
+            </div>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            {/* CENTRO — BUSCADOR */}
+            <div className="col-6 d-none d-md-flex justify-content-center">
+              <Form className="search-wrapper">
+                <i className="bi bi-search search-icon"></i>
+                <Form.Control
+                  type="text"
+                  placeholder="Buscar productos, marcas y categorías"
+                  className="search-input"
+                />
+              </Form>
+            </div>
 
-          <Navbar.Collapse id="basic-navbar-nav">
-            {/* 👉 **Buscador removido** */}
-
-            {/* Navegación */}
-            <Nav className="ms-auto text-center align-items-lg-center">
-              <NavLink to="/" className={getNavLinkClass}>
-                Inicio
-              </NavLink>
-
-              <NavLink to="/productos" className={getNavLinkClass}>
-                Productos
-              </NavLink>
-
-              <NavLink to="/nosotros" className={getNavLinkClass}>
-                Nosotros
-              </NavLink>
-
-              <NavLink to="/contacto" className={getNavLinkClass}>
-                Contacto
-              </NavLink>
-
-              {/* Carrito */}
-              <NavLink
-                to="/carrito"
-                className={({ isActive }) =>
-                  `nav-link opcion-nav fw-bold d-none d-lg-inline ${
-                    isActive ? "active" : ""
-                  }`
-                }
-              >
+            {/* DERECHA — CARRITO + LOGIN */}
+            <div className="col-3 d-flex justify-content-end align-items-center">
+              <NavLink to="/carrito" className="nav-icon-button me-3">
                 <i className="bi bi-cart3"></i>
               </NavLink>
-              <NavLink to="/admin" className={getNavLinkClass}>
-                Administrador
-              </NavLink>
 
-              {/* Login */}
               <button
-                type="button"
-                className="nav-link opcion-nav fw-bold border-0 bg-transparent d-flex align-items-center justify-content-center"
-                style={{ cursor: "pointer" }}
+                className="btn-login-modern"
                 onClick={() => setShowLogin(true)}
               >
-                <i className="bi bi-person-circle icono-user me-1"></i>
-                <span className="d-none d-lg-inline">Ingresar</span>
+                <i className="bi bi-person"></i>
+                <span className="d-none d-lg-inline ms-1">Ingresar</span>
               </button>
-            </Nav>
-          </Navbar.Collapse>
+            </div>
+          </div>
         </Container>
       </Navbar>
+
+      {/* NAVBAR INFERIOR (links) */}
+      <div className="lower-navbar">
+        <Container className="d-flex gap-4">
+          <NavLink to="/" className={getNavLinkClass}>
+            Inicio
+          </NavLink>
+          <NavLink to="/productos" className={getNavLinkClass}>
+            Productos
+          </NavLink>
+        </Container>
+      </div>
 
       {/* MODAL LOGIN */}
       <Login show={showLogin} onClose={() => setShowLogin(false)} />

@@ -1,47 +1,117 @@
-.navbar-bg-color{
-  background-color: #27187E !important;
+/* NAVBAR SUPERIOR */
+.navbar-modern {
+  background: #111; /* Estilo CompraGamer */
+  padding: 0.7rem 0;
 }
 
-.navbar-bg-color,
-.navbar-bg-color .navbar-brand,
-.navbar-bg-color .navbar-nav {
+.search-wrapper {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+
+/* ESTADO NORMAL */
+.search-input {
+  background: transparent;
+  border: 2px solid #F2F2F2; /* mismo color que el navbar */
+  border-radius: 8px;
+  padding-left: 38px;
+  height: 42px;
+  color: white;
+  transition: all 0.25s ease-in-out;
+}
+
+.search-input::placeholder {
+  color: #ccc;
+}
+
+/* ICONO */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff6500; /* icono siempre naranja */
+  font-size: 1.3rem;
+  pointer-events: none;
+}
+
+/* HOVER y FOCUS */
+.search-input:hover,
+.search-input:focus {
+  background: #000;               /* fondo negro */
+  border-color: #ff6500;          /* borde naranja */
+  box-shadow: 0 0 6px rgba(255, 100, 20, 0.4); /* glow sutil */
+  outline: none;
+}
+
+
+.search-input::placeholder {
+  color: #ccc;
+
+
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff6500;
+  font-size: 1.3rem;
+}
+
+/* Íconos derecha */
+.nav-icon-button {
+  font-size: 1.4rem;
   color: white !important;
 }
 
-/* Opcional: hover */
-.navbar-bg-color {
-  color: #F7F7FF !important;
+.nav-icon-button:hover {
+  color: #ff6500 !important;
+}
+
+/* LOGIN BUTTON */
+.btn-login-modern {
+  background: #ff6500;
+  border: none;
+  padding: 6px 14px;
+  color: white;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn-login-modern:hover {
+  background: #ff7f26;
+}
+
+/* NAVBAR INFERIOR */
+.lower-navbar {
+  background: #f2f2f2;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* LINKS DE ABAJO */
+.nav-item-lower {
+  color: #333 !important;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.nav-item-lower:hover {
+  color: #ff6500 !important;
+}
+
+.active-lower {
+  color: #ff6500 !important;
 }
 
 .img-navbar {
-  width: 100px;
-  height: auto;
-}
-
-.barra-busqueda {
-  width: 400px;
-}
-
-@media(max-width: 576px){
-  .barra-small {
-    width: 100px;
-  }
-}
-
-/* color normal del nav-link */
-.opcion-nav {
-  color: #55bfd4 !important;
-  transition: color 0.5s ease;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-.opcion-nav:hover {
-  color: #00ff88 !important; 
-}
-
-.icono-user {
-  font-size: 26px; 
-  line-height: 1;  
-  vertical-align: middle; 
+  height: 50px;     /* tamaño recomendado */
+  width: auto;      /* mantiene las proporciones */
+  display: block;
 }
