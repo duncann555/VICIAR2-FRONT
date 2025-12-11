@@ -188,7 +188,7 @@ function CardProducto({ producto }) {
 // ===================================
 function CarruselPrincipal() {
   return (
-    <div className="carousel-wrapper">
+    <div className="carousel-wrapper pt-5">
       <Carousel fade indicators className="main-carousel">
         <Carousel.Item>
           <img className="carousel-img" src={banner1} />
@@ -274,7 +274,7 @@ export default function Inicio() {
       <Container className="inicio-container py-4">
         <header className="text-center mb-5">
           <h1 className="fw-bold inicio-hero-title">
-            Bienvenidos a <span className="texto-resaltado">ViciAR</span>
+            Bienvenidos 
           </h1>
           <h5 className="inicio-hero-subtitle mt-3">
             El lugar donde los gamers vienen por juegos...

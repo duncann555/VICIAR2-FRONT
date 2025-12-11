@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-
 // =================================
 // CATEGORÍAS
 // =================================
@@ -21,21 +20,87 @@ const IMG = (text) =>
 // PRODUCTOS
 // =================================
 const productosMock = [
-  { id: 1, nombreProducto: "The Legend of Zelda: TOTK", precio: 115000, imagen: IMG("Zelda"), categoria: "Nintendo" },
-  { id: 2, nombreProducto: "Super Mario Odyssey", precio: 89000, imagen: IMG("Mario"), categoria: "Nintendo" },
+  {
+    id: 1,
+    nombreProducto: "The Legend of Zelda: TOTK",
+    precio: 115000,
+    imagen: IMG("Zelda"),
+    categoria: "Nintendo",
+  },
+  {
+    id: 2,
+    nombreProducto: "Super Mario Odyssey",
+    precio: 89000,
+    imagen: IMG("Mario"),
+    categoria: "Nintendo",
+  },
 
-  { id: 3, nombreProducto: "Resident Evil 2 (PS1)", precio: 65000, imagen: IMG("RE2"), categoria: "PlayStation" },
-  { id: 4, nombreProducto: "God of War II (PS2)", precio: 78000, imagen: IMG("GOW2"), categoria: "PlayStation" },
-  { id: 5, nombreProducto: "The Last of Us (PS3)", precio: 90000, imagen: IMG("TLOU"), categoria: "PlayStation" },
-  { id: 6, nombreProducto: "God of War (PS4)", precio: 115000, imagen: IMG("GOW PS4"), categoria: "PlayStation" },
-  { id: 7, nombreProducto: "PlayStation 5 Slim 1TB", precio: 1350000, imagen: IMG("PS5"), categoria: "PlayStation" },
+  {
+    id: 3,
+    nombreProducto: "Resident Evil 2 (PS1)",
+    precio: 65000,
+    imagen: IMG("RE2"),
+    categoria: "PlayStation",
+  },
+  {
+    id: 4,
+    nombreProducto: "God of War II (PS2)",
+    precio: 78000,
+    imagen: IMG("GOW2"),
+    categoria: "PlayStation",
+  },
+  {
+    id: 5,
+    nombreProducto: "The Last of Us (PS3)",
+    precio: 90000,
+    imagen: IMG("TLOU"),
+    categoria: "PlayStation",
+  },
+  {
+    id: 6,
+    nombreProducto: "God of War (PS4)",
+    precio: 115000,
+    imagen: IMG("GOW PS4"),
+    categoria: "PlayStation",
+  },
+  {
+    id: 7,
+    nombreProducto: "PlayStation 5 Slim 1TB",
+    precio: 1350000,
+    imagen: IMG("PS5"),
+    categoria: "PlayStation",
+  },
 
-  { id: 8, nombreProducto: "Xbox Series X 1TB", precio: 1290000, imagen: IMG("Series X"), categoria: "XBOX" },
-  { id: 9, nombreProducto: "Halo Infinite", precio: 98000, imagen: IMG("Halo"), categoria: "XBOX" },
+  {
+    id: 8,
+    nombreProducto: "Xbox Series X 1TB",
+    precio: 1290000,
+    imagen: IMG("Series X"),
+    categoria: "XBOX",
+  },
+  {
+    id: 9,
+    nombreProducto: "Halo Infinite",
+    precio: 98000,
+    imagen: IMG("Halo"),
+    categoria: "XBOX",
+  },
 
-  { id: 10, nombreProducto: "SEGA Genesis Mini", precio: 190000, imagen: IMG("SEGA"), categoria: "SEGA" },
+  {
+    id: 10,
+    nombreProducto: "SEGA Genesis Mini",
+    precio: 190000,
+    imagen: IMG("SEGA"),
+    categoria: "SEGA",
+  },
 
-  { id: 11, nombreProducto: "PC Gamer Ryzen 7 + RTX 4060 Ti", precio: 2200000, imagen: IMG("PC Gamer"), categoria: "PC" },
+  {
+    id: 11,
+    nombreProducto: "PC Gamer Ryzen 7 + RTX 4060 Ti",
+    precio: 2200000,
+    imagen: IMG("PC Gamer"),
+    categoria: "PC",
+  },
 ];
 
 // =================================
@@ -102,32 +167,23 @@ export default function Productos() {
   };
 
   return (
-    <div className="inicio-wrapper">
+    <div className="inicio-wrapper py-4">
       <Container className="inicio-container py-4">
-
         {/* TITULO */}
-        <header className="text-center mb-5">
-          <h1 className="fw-bold inicio-hero-title">
-            Catalogo <span className="texto-resaltado">ViciAR</span>
-          </h1>
-          <h5 className="inicio-hero-subtitle mt-2">
-            Elegí una categoría y encontrá tus próximos juegos.
-          </h5>
-        </header>
 
         <Row>
-
           {/* =========================== */}
           {/* SIDEBAR IZQUIERDO          */}
           {/* =========================== */}
           <Col xs={12} md={3} className="mb-4">
             <div className="sidebar-categorias">
-
               <h5 className="mb-3 fw-bold">Categorías</h5>
 
               <ul className="lista-categorias">
                 <li
-                  className={`item-categoria ${categoriaActiva === "todas" ? "activa" : ""}`}
+                  className={`item-categoria ${
+                    categoriaActiva === "todas" ? "activa" : ""
+                  }`}
                   onClick={() => setCategoriaActiva("todas")}
                 >
                   🔸 Todas
@@ -136,7 +192,9 @@ export default function Productos() {
                 {categoriasMock.map((cat) => (
                   <li
                     key={cat.id}
-                    className={`item-categoria ${categoriaActiva === cat.nombre ? "activa" : ""}`}
+                    className={`item-categoria ${
+                      categoriaActiva === cat.nombre ? "activa" : ""
+                    }`}
                     onClick={() => setCategoriaActiva(cat.nombre)}
                   >
                     ▸ {cat.nombre}
@@ -167,7 +225,6 @@ export default function Productos() {
               ))}
             </Row>
           </Col>
-
         </Row>
       </Container>
     </div>

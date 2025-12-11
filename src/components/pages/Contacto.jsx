@@ -26,39 +26,53 @@ const Contacto = () => {
   };
 
   return (
-    <div className="contacto-wrapper">
-      <Container className="contacto-container py-4">
+    <div className="inicio-wrapper">
+      <Container className="inicio-container py-5 contacto-container">
         {/* HERO */}
         <header className="text-center mb-4">
-          <h1 className="fw-bold contacto-title">
-            Contacto <span className="texto-resaltado">ViciAR</span>
-          </h1>
-          <p className="contacto-subtitle">
-            Soporte real para gamers reales. Si tenés una duda, acá estamos.
+          
+          <p className="inicio-hero-subtitle contacto-subtitle">
+            Soporte real para gamers reales. Si tenés una duda con tu compra, tu
+            envío o tu cuenta, escribinos y te damos una mano.
           </p>
 
-          <div className="d-flex justify-content-center gap-2 flex-wrap mt-2">
-            <Badge bg="dark">Consultas</Badge>
-            <Badge bg="dark">Soporte</Badge>
-            <Badge bg="dark">Ventas</Badge>
-            <Badge bg="dark">Post-compra</Badge>
+          <div className="d-flex justify-content-center contacto-badges flex-wrap mt-3">
+            <Badge bg="dark" className="contacto-badge-pill">
+              Consultas generales
+            </Badge>
+            <Badge bg="dark" className="contacto-badge-pill">
+              Soporte técnico
+            </Badge>
+            <Badge bg="dark" className="contacto-badge-pill">
+              Ventas online
+            </Badge>
+            <Badge bg="dark" className="contacto-badge-pill">
+              Post-compra
+            </Badge>
           </div>
         </header>
 
-        <Row className="g-4">
-          {/* FORM */}
-          <Col xs={12} md={6}>
-            <Card className="contacto-card">
+        <Row className="g-4 align-items-stretch mt-3">
+          {/* FORMULARIO */}
+          <Col xs={12} lg={6}>
+            <Card className="contacto-card h-100">
               <Card.Body>
                 <div className="d-flex align-items-center gap-2 mb-3">
                   <span className="contacto-dot" />
-                  <h5 className="m-0 fw-bold">Enviá tu consulta</h5>
+                  <div>
+                    <h5 className="m-0 fw-bold">Enviá tu consulta</h5>
+                    <small className="text-muted">
+                      Respondemos dentro de las próximas 24 horas hábiles.
+                    </small>
+                  </div>
                 </div>
 
-                <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form onSubmit={handleSubmit(onSubmit)} noValidate>
                   {/* Nombre */}
                   <Form.Group className="mb-3">
-                    <Form.Label>Nombre y apellido</Form.Label>
+                    <Form.Label className="contacto-label">
+                      Nombre y apellido
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Ej: Juan Pérez"
@@ -70,15 +84,15 @@ const Contacto = () => {
                       })}
                     />
                     {errors.nombreCompleto && (
-                      <span className="text-danger small">
+                      <div className="contacto-error">
                         {errors.nombreCompleto.message}
-                      </span>
+                      </div>
                     )}
                   </Form.Group>
 
                   {/* Email */}
                   <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="contacto-label">Email</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Ej: juan_perez@gmail.com"
@@ -93,37 +107,37 @@ const Contacto = () => {
                       })}
                     />
                     {errors.email && (
-                      <span className="text-danger small">
+                      <div className="contacto-error">
                         {errors.email.message}
-                      </span>
+                      </div>
                     )}
                   </Form.Group>
 
                   {/* Teléfono */}
                   <Form.Group className="mb-3">
-                    <Form.Label>Teléfono</Form.Label>
+                    <Form.Label className="contacto-label">Teléfono</Form.Label>
                     <Form.Control
                       type="tel"
-                      placeholder="Ej: 381-1115469"
+                      placeholder="Ej: 381 1234567"
                       className="contacto-input"
                       {...register("telefono", {
                         required: "El número de teléfono es obligatorio",
                         pattern: {
-                          value: /^[0-9]{2,4}\s?[0-9]{4}-?[0-9]{4}$/,
+                          value: /^[0-9\s\-()+]{7,20}$/,
                           message: "Teléfono inválido",
                         },
                       })}
                     />
                     {errors.telefono && (
-                      <span className="text-danger small">
+                      <div className="contacto-error">
                         {errors.telefono.message}
-                      </span>
+                      </div>
                     )}
                   </Form.Group>
 
                   {/* Consulta */}
                   <Form.Group className="mb-3">
-                    <Form.Label>Consulta</Form.Label>
+                    <Form.Label className="contacto-label">Consulta</Form.Label>
                     <Form.Control
                       as="textarea"
                       rows={4}
@@ -142,19 +156,19 @@ const Contacto = () => {
                       })}
                     />
                     {errors.consulta && (
-                      <Form.Text className="text-danger">
+                      <div className="contacto-error">
                         {errors.consulta.message}
-                      </Form.Text>
+                      </div>
                     )}
                   </Form.Group>
 
-                  <div className="d-flex justify-content-end">
+                  <div className="d-flex justify-content-end mt-3">
                     <Button
                       type="submit"
                       className="contacto-btn"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Enviando..." : "Enviar"}
+                      {isSubmitting ? "Enviando..." : "Enviar consulta"}
                     </Button>
                   </div>
                 </Form>
@@ -162,13 +176,18 @@ const Contacto = () => {
             </Card>
           </Col>
 
-          {/* MAP + INFO */}
-          <Col xs={12} md={6}>
-            <Card className="contacto-card">
+          {/* MAPA + INFO */}
+          <Col xs={12} lg={6}>
+            <Card className="contacto-card contacto-card-secundaria h-100">
               <Card.Body>
                 <div className="d-flex align-items-center gap-2 mb-3">
-                  <span className="contacto-dot" />
-                  <h5 className="m-0 fw-bold">Encontranos</h5>
+                  <span className="contacto-dot contacto-dot-alt" />
+                  <div>
+                    <h5 className="m-0 fw-bold">Encontranos</h5>
+                    <small className="text-muted">
+                      También podés visitarnos o escribirnos por redes.
+                    </small>
+                  </div>
                 </div>
 
                 <div className="contacto-mapa-wrapper mb-3">
@@ -185,11 +204,11 @@ const Contacto = () => {
 
                 <div className="contacto-info">
                   <div className="contacto-info-item">
-                    <i className="bi bi-geo-fill"></i>
+                    <i className="bi bi-geo-alt-fill contacto-info-icon"></i>
                     <div>
                       <div className="contacto-info-label">Dirección</div>
                       <div className="contacto-info-text">
-                        Gral. Jose Maria Paz 576
+                        Gral. José María Paz 576, Tucumán
                       </div>
                     </div>
                   </div>
@@ -197,11 +216,11 @@ const Contacto = () => {
                   <div className="contacto-info-sep" />
 
                   <div className="contacto-info-item">
-                    <i className="bi bi-envelope-at-fill"></i>
+                    <i className="bi bi-envelope-at-fill contacto-info-icon"></i>
                     <div>
                       <div className="contacto-info-label">Email</div>
                       <div className="contacto-info-text">
-                        vici_AR@gmail.com
+                        viciar.soporte@gmail.com
                       </div>
                     </div>
                   </div>
@@ -209,7 +228,7 @@ const Contacto = () => {
                   <div className="contacto-info-sep" />
 
                   <div className="contacto-info-item">
-                    <i className="bi bi-clock-fill"></i>
+                    <i className="bi bi-clock-fill contacto-info-icon"></i>
                     <div>
                       <div className="contacto-info-label">Horarios</div>
                       <div className="contacto-info-text">
@@ -220,14 +239,14 @@ const Contacto = () => {
                 </div>
 
                 <div className="mt-3 d-flex gap-2 flex-wrap">
-                  <Button variant="outline-dark" size="sm">
-                    <i className="bi bi-instagram me-1"></i> Instagram
+                  <Button variant="outline-dark" size="sm" className="contacto-social-btn">
+                    <i className="bi bi-instagram me-1" /> Instagram
                   </Button>
-                  <Button variant="outline-dark" size="sm">
-                    <i className="bi bi-whatsapp me-1"></i> WhatsApp
+                  <Button variant="outline-dark" size="sm" className="contacto-social-btn">
+                    <i className="bi bi-whatsapp me-1" /> WhatsApp
                   </Button>
-                  <Button variant="outline-dark" size="sm">
-                    <i className="bi bi-discord me-1"></i> Discord
+                  <Button variant="outline-dark" size="sm" className="contacto-social-btn">
+                    <i className="bi bi-discord me-1" /> Discord
                   </Button>
                 </div>
               </Card.Body>

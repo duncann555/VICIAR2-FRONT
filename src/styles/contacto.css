@@ -1,180 +1,164 @@
-/* =========================
-   WRAPPER - MISMO FONDO INICIO/PRODUCTOS
-========================= */
-
-.contacto-wrapper {
-  min-height: 100vh;
-  padding-bottom: 3rem;
-
-  background: radial-gradient(
-    circle at top,
-    rgba(140, 120, 255, 0.15) 0%,
-    #d7d8e2 38%,
-    #c8cad3 100%
-  );
-}
+/* Reutiliza el fondo y tipografías del Inicio:
+   - wrapper = .inicio-wrapper
+   - container = .inicio-container
+   - títulos = .inicio-hero-title / .inicio-hero-subtitle
+*/
 
 .contacto-container {
   padding-top: 2.5rem;
+  padding-bottom: 3rem;
 }
 
-/* =========================
-   TÍTULOS
-========================= */
-
-.contacto-title {
-  color: #ff4b4b;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
+/* Subtítulo debajo del título principal */
 .contacto-subtitle {
-  color: #3b3f4c;
   max-width: 720px;
-  margin: 0.5rem auto 0;
-  font-weight: 500;
+  margin: 0 auto;
 }
 
-/* Si ya lo tenés global, podés borrar esto */
-.texto-resaltado {
-  background: linear-gradient(90deg, #3b82f6, #06b6d4);
-  -webkit-background-clip: text;
-  color: transparent;
+/* Badges de secciones */
+.contacto-badges {
+  gap: 0.5rem;
 }
 
-/* =========================
-   CARDS
-========================= */
+.contacto-badge-pill {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
 
+/* Tarjetas de contacto (mismo estilo "premium" que productos) */
 .contacto-card {
   border: none;
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   background: #ffffff;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
-  transition: 0.25s ease;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+  padding: 1.5rem;
 }
 
-.contacto-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.22);
+/* Segunda tarjeta ligeramente distinta */
+.contacto-card-secundaria {
+  background: radial-gradient(circle at top left, #f97316 0, #ffffff 42%);
 }
 
+/* Punto de color al lado de los títulos */
 .contacto-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #9c6bff, #5be2ff);
-  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
 }
 
-/* =========================
-   INPUTS
-========================= */
-
-.contacto-input {
-  height: 46px;
-  border-radius: 12px;
-  border: 1px solid #d9d9d9;
-  transition: 0.25s;
+.contacto-dot-alt {
+  background: linear-gradient(135deg, #f97316, #fb923c);
 }
 
+/* Labels e inputs */
+.contacto-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contacto-input,
 .contacto-textarea {
-  border-radius: 12px;
-  border: 1px solid #d9d9d9;
-  transition: 0.25s;
+  border-radius: 0.9rem;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .contacto-input:focus,
 .contacto-textarea:focus {
   border-color: #7a5bff;
-  box-shadow: 0 0 8px rgba(122, 91, 255, 0.25);
+  background: #ffffff;
+  box-shadow: 0 0 0 0.15rem rgba(122, 91, 255, 0.25);
 }
 
-/* =========================
-   BOTÓN
-========================= */
+/* Mensajes de error */
+.contacto-error {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #dc2626;
+}
 
+/* Botón principal */
 .contacto-btn {
   border-radius: 999px;
-  font-weight: 700;
-  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  padding: 0.5rem 1.6rem;
   background: #111827;
   border: 1px solid #111827;
   transition: 0.2s ease;
 }
 
-.contacto-btn:hover {
+.contacto-btn:hover:not(:disabled) {
   background: #0f172a;
   border-color: #0f172a;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.3);
 }
 
-/* =========================
-   MAPA
-========================= */
-
+/* Mapa */
 .contacto-mapa-wrapper {
-  border-radius: 14px;
+  border-radius: 1.25rem;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  border: 2px solid #111827;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.25);
 }
 
 .contacto-mapa {
   width: 100%;
-  border: 0;
-  display: block;
+  border: none;
 }
 
-/* =========================
-   INFO BOX
-========================= */
-
+/* Info de contacto */
 .contacto-info {
-  margin-top: 8px;
+  margin-top: 0.75rem;
 }
 
 .contacto-info-item {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
-.contacto-info-item i {
-  font-size: 1.35rem;
-  color: #111827;
-  margin-top: 2px;
+.contacto-info-icon {
+  font-size: 1.4rem;
+  color: #f97316;
 }
 
 .contacto-info-label {
   font-size: 0.8rem;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: #6b7280;
 }
 
 .contacto-info-text {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: #111827;
 }
 
 .contacto-info-sep {
   height: 1px;
-  background: rgba(0, 0, 0, 0.08);
-  margin: 12px 0;
+  margin: 0.75rem 0;
+  background: #e5e7eb;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* Botones de redes */
+.contacto-social-btn {
+  border-radius: 999px !important;
+  font-size: 0.85rem;
+  padding-inline: 0.9rem;
+}
 
+/* Responsive */
 @media (max-width: 768px) {
-  .contacto-container {
-    padding-top: 1.5rem;
+  .contacto-card {
+    padding: 1.25rem;
+  }
+
+  .contacto-mapa-wrapper {
+    border-width: 1px;
   }
 }
