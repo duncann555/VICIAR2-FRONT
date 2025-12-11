@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css"
 import './styles/app.css'
 import './styles/inicio.css'
+import './styles/productos.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(

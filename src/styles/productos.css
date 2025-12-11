@@ -1,0 +1,31 @@
+.sidebar-categorias {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.lista-categorias {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.item-categoria {
+  padding: 8px 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.item-categoria:hover {
+  background: #f1f1f1;
+}
+
+.item-categoria.activa {
+  background: #ff6b00;
+  color: white;
+  font-weight: 700;
+}

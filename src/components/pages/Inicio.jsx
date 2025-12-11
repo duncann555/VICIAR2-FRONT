@@ -11,9 +11,11 @@ import banner5 from "../../assets/banner5.jpg";
 import banner6 from "../../assets/banner6.jpg";
 
 // CARRUSEL OFERTAS
-import oferta1 from "../../assets/oferta1.png";
-import oferta2 from "../../assets/oferta2.png";
-import oferta3 from "../../assets/oferta3.png";
+import oferta1 from "../../assets/oferta1.jpg";
+import oferta2 from "../../assets/oferta2.jpg";
+import oferta3 from "../../assets/oferta3.avif";
+import oferta4 from "../../assets/oferta4.webp";
+
 
 // ===================================
 // CATEGORÍAS
@@ -227,6 +229,9 @@ function CarruselOfertas() {
         </Carousel.Item>
         <Carousel.Item>
           <img className="carousel-img-ofertas" src={oferta3} />
+        </Carousel.Item>
+                <Carousel.Item>
+          <img className="carousel-img-ofertas" src={oferta4} />
         </Carousel.Item>
       </Carousel>
     </div>

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../../styles/nosotros.css";
 
 // Si tenés logo, joya. Si no, no pasa nada.
-import logo from "../../assets/logoS2.png";
 
 export default function Nosotros() {
   return (
