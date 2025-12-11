@@ -32,11 +32,15 @@ function Menu() {
             <div className="col-6 d-none d-md-flex justify-content-center">
               <Form className="search-wrapper">
                 <i className="bi bi-search search-icon"></i>
-                <Form.Control
-                  type="text"
-                  placeholder="Buscar productos, marcas y categorías"
-                  className="search-input"
-                />
+
+                <div className="search-floating">
+                  <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Buscar por producto y categoria "
+                  />
+                  <span className="search-label">Buscar productos</span>
+                </div>
               </Form>
             </div>
 

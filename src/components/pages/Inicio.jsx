@@ -1,16 +1,8 @@
-import { useMemo, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Card,
-  Button,
-  Carousel,
-} from "react-bootstrap";
+import { useMemo } from "react";
+import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-// IMÁGENES CARRUSEL PRINCIPAL
+// CARRUSEL PRINCIPAL
 import banner1 from "../../assets/banner1.jpg";
 import banner2 from "../../assets/banner2.jpg";
 import banner3 from "../../assets/banner3.jpg";
@@ -18,15 +10,14 @@ import banner4 from "../../assets/banner4.jpg";
 import banner5 from "../../assets/banner5.jpg";
 import banner6 from "../../assets/banner6.jpg";
 
-
-// IMÁGENES CARRUSEL OFERTAS
+// CARRUSEL OFERTAS
 import oferta1 from "../../assets/oferta1.png";
 import oferta2 from "../../assets/oferta2.png";
 import oferta3 from "../../assets/oferta3.png";
 
-// ===============================
-//  CATEGORÍAS FINALES (TU LISTA)
-// ===============================
+// ===================================
+// CATEGORÍAS
+// ===================================
 const categoriasMock = [
   { id: 1, nombre: "Nintendo" },
   { id: 2, nombre: "PlayStation" },
@@ -38,9 +29,9 @@ const categoriasMock = [
 const IMG = (text) =>
   `https://placehold.co/800x800/png?text=${encodeURIComponent(text)}`;
 
-// ===============================
-//  PRODUCTOS MOCK
-// ===============================
+// ===================================
+// PRODUCTOS MOCK COMPLETOS
+// ===================================
 const productosMock = [
   {
     id: 1,
@@ -60,7 +51,6 @@ const productosMock = [
     ventas: 90,
     oferta: false,
   },
-
   {
     id: 3,
     nombreProducto: "Resident Evil 2 (PS1)",
@@ -106,7 +96,6 @@ const productosMock = [
     ventas: 200,
     oferta: false,
   },
-
   {
     id: 8,
     nombreProducto: "Xbox Series X 1TB",
@@ -125,7 +114,6 @@ const productosMock = [
     ventas: 70,
     oferta: true,
   },
-
   {
     id: 10,
     nombreProducto: "SEGA Genesis Mini",
@@ -135,7 +123,6 @@ const productosMock = [
     ventas: 50,
     oferta: true,
   },
-
   {
     id: 11,
     nombreProducto: "PC Gamer Ryzen 7 + RTX 4060 Ti",
@@ -147,9 +134,9 @@ const productosMock = [
   },
 ];
 
-// ===============================
-//  BannerCategoria (interno)
-// ===============================
+// ===================================
+// BannerCategoria
+// ===================================
 function BannerCategoria({ texto, tipo }) {
   return (
     <div className={`categoria-banner contenedorCat ${tipo || ""}`}>
@@ -158,40 +145,30 @@ function BannerCategoria({ texto, tipo }) {
   );
 }
 
-// ===============================
-//  CardProducto (interno)
-// ===============================
-const FALLBACK_IMG = IMG("ViciAR");
-
+// ===================================
+// CardProducto
+// ===================================
 function CardProducto({ producto }) {
   const navigate = useNavigate();
-  const { id, nombreProducto, precio, imagen, categoria } = producto;
+  const { id, nombreProducto, precio, imagen, categoria, oferta } = producto;
 
   const formatearPrecio = (v) =>
     v.toLocaleString("es-AR", { style: "currency", currency: "ARS" });
 
-  const handleImgError = (e) => {
-    e.currentTarget.src = FALLBACK_IMG;
-  };
-
   return (
     <Card className="producto-card h-100">
       <div className="producto-img-wrapper">
-        <Card.Img
-          src={imagen}
-          alt={nombreProducto}
-          className="producto-img"
-          onError={handleImgError}
-        />
+        {/* BADGE DE OFERTA */}
+        {oferta && <span className="badge-oferta">OFERTA</span>}
+
+        <Card.Img src={imagen} alt={nombreProducto} className="producto-img" />
         <span className="producto-categoria-badge">{categoria}</span>
       </div>
 
       <Card.Body className="d-flex flex-column">
-        <Card.Title className="producto-titulo">{nombreProducto}</Card.Title>
+        <Card.Title>{nombreProducto}</Card.Title>
 
-        <div className="mt-2 mb-3">
-          <span className="producto-precio">{formatearPrecio(precio)}</span>
-        </div>
+        <span className="producto-precio mb-3">{formatearPrecio(precio)}</span>
 
         <Button
           className="w-100 producto-btn mt-auto"
@@ -204,30 +181,30 @@ function CardProducto({ producto }) {
   );
 }
 
-// ===============================
-//  CarruselPrincipal (interno)
-// ===============================
+// ===================================
+// CarruselPrincipal
+// ===================================
 function CarruselPrincipal() {
   return (
     <div className="carousel-wrapper">
       <Carousel fade indicators className="main-carousel">
         <Carousel.Item>
-          <img className="carousel-img" src={banner1} alt="banner 1" />
+          <img className="carousel-img" src={banner1} />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="carousel-img" src={banner2} alt="banner 2" />
+          <img className="carousel-img" src={banner2} />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="carousel-img" src={banner3} alt="banner 3" />
+          <img className="carousel-img" src={banner3} />
         </Carousel.Item>
-                <Carousel.Item>
-          <img className="carousel-img" src={banner4} alt="banner 3" />
+        <Carousel.Item>
+          <img className="carousel-img" src={banner4} />
         </Carousel.Item>
-                <Carousel.Item>
-          <img className="carousel-img" src={banner5} alt="banner 3" />
+        <Carousel.Item>
+          <img className="carousel-img" src={banner5} />
         </Carousel.Item>
-                <Carousel.Item>
-          <img className="carousel-img" src={banner6} alt="banner 3" />
+        <Carousel.Item>
+          <img className="carousel-img" src={banner6} />
         </Carousel.Item>
       </Carousel>
     </div>
@@ -235,21 +212,21 @@ function CarruselPrincipal() {
 }
 
 
-// ===============================
-//  CarruselOfertas (interno)
-// ===============================
+// ===================================
+// CarruselOfertas
+// ===================================
 function CarruselOfertas() {
   return (
     <div className="carousel-wrapper-ofertas">
-      <Carousel interval={3000} indicators className="main-carousel-ofertas">
+      <Carousel interval={3000} className="main-carousel-ofertas">
         <Carousel.Item>
-          <img className="carousel-img-ofertas" src={oferta1} alt="oferta 1" />
+          <img className="carousel-img-ofertas" src={oferta1} />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="carousel-img-ofertas" src={oferta2} alt="oferta 2" />
+          <img className="carousel-img-ofertas" src={oferta2} />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="carousel-img-ofertas" src={oferta3} alt="oferta 3" />
+          <img className="carousel-img-ofertas" src={oferta3} />
         </Carousel.Item>
       </Carousel>
     </div>
@@ -257,19 +234,13 @@ function CarruselOfertas() {
 }
 
 
-// ===============================
-//  COMPONENTE PRINCIPAL: Inicio
-// ===============================
+// ===================================
+// COMPONENTE PRINCIPAL
+// ===================================
 export default function Inicio() {
-  const [categoriaFiltro, setCategoriaFiltro] = useState("todas");
-  const [busqueda, setBusqueda] = useState("");
-
   const productos = productosMock;
   const categorias = categoriasMock;
 
-  // ---------------------------
-  // Banner color por categoría
-  // ---------------------------
   const tipoPorCategoria = {
     Nintendo: "categoria-nintendo",
     PlayStation: "categoria-playstation",
@@ -278,85 +249,24 @@ export default function Inicio() {
     PC: "categoria-pc",
   };
 
-  // ---------------------------
-  // Más vendido por categoría
-  // ---------------------------
   const masVendidoPorCategoria = useMemo(() => {
     const map = {};
-
     categorias.forEach((c) => {
       const lista = productos.filter((p) => p.categoria === c.nombre);
-
       if (lista.length > 0) {
-        const top = [...lista].sort(
-          (a, b) => (b.ventas ?? 0) - (a.ventas ?? 0)
-        )[0];
-
-        map[c.nombre] = top;
+        map[c.nombre] = [...lista].sort((a, b) => b.ventas - a.ventas)[0];
       }
     });
-
     return map;
   }, [categorias, productos]);
 
-  // ---------------------------
-  // Ofertas
-  // ---------------------------
-  const productosOferta = useMemo(
-    () => productos.filter((p) => p.oferta),
-    [productos]
-  );
-
-  // ---------------------------
-  // Filtrado por nombre + categoría
-  // - nombreProducto
-  // - y además permite buscar por texto de categoría
-  // ---------------------------
-  const termino = busqueda.trim().toLowerCase();
-
-  const productosFiltrados = useMemo(() => {
-    return productos.filter((p) => {
-      const matchCat =
-        categoriaFiltro === "todas" || p.categoria === categoriaFiltro;
-
-      if (!termino) return matchCat;
-
-      const matchText =
-        p.nombreProducto.toLowerCase().includes(termino) ||
-        p.categoria.toLowerCase().includes(termino);
-
-      return matchCat && matchText;
-    });
-  }, [productos, categoriaFiltro, termino]);
-
-  // ---------------------------
-  // Modo Home vs Modo Resultados
-  // ---------------------------
-  const hayFiltros =
-    categoriaFiltro !== "todas" || busqueda.trim() !== "";
-
-  const tituloResultados =
-    categoriaFiltro === "todas"
-      ? "Resultados de búsqueda"
-      : `Resultados en ${categoriaFiltro}`;
-
-  const tipoBannerResultados =
-    categoriaFiltro === "todas" ? "" : tipoPorCategoria[categoriaFiltro] || "";
-
-  const limpiarFiltros = () => {
-    setCategoriaFiltro("todas");
-    setBusqueda("");
-  };
+  const productosOferta = productos.filter((p) => p.oferta);
 
   return (
     <div className="inicio-wrapper">
-      {/* CARRUSEL PRINCIPAL */}
       <CarruselPrincipal />
 
-      
-
       <Container className="inicio-container py-4">
-        {/* HERO */}
         <header className="text-center mb-5">
           <h1 className="fw-bold inicio-hero-title">
             Bienvenidos a <span className="texto-resaltado">ViciAR</span>
@@ -367,174 +277,97 @@ export default function Inicio() {
           </h5>
         </header>
 
-        {/* BUSCADOR + FILTRO CATEGORÍA */}
-        <Row className="align-items-center g-3 mb-4">
-          <Col xs={12} md={7} lg={8}>
-            <div className="position-relative">
-              <i className="bi bi-search buscador-icono"></i>
-              <Form.Control
-                placeholder="Buscar por nombre o categoría..."
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="ps-5 buscador-input"
-              />
-            </div>
-          </Col>
+        {/* ====================================== */}
+        {/* MÁS VENDIDOS POR CATEGORÍA */}
+        {/* ====================================== */}
+        {categorias.map((cat) => {
+          const prodTop = masVendidoPorCategoria[cat.nombre];
+          const tipo = tipoPorCategoria[cat.nombre] || "";
 
-          <Col xs={12} md={5} lg={4}>
-            <div className="filtro-categoria-wrapper">
-              <Form.Select
-                value={categoriaFiltro}
-                onChange={(e) => setCategoriaFiltro(e.target.value)}
-                className="filtro-categoria"
-              >
-                <option value="todas">Todas</option>
-                {categorias.map((cat) => (
-                  <option key={cat.id} value={cat.nombre}>
-                    {cat.nombre}
-                  </option>
-                ))}
-              </Form.Select>
-              <i className="bi bi-chevron-down filtro-categoria-flecha"></i>
-            </div>
-          </Col>
-
-          {hayFiltros && (
-            <Col xs={12}>
-              <div className="d-flex justify-content-end">
-                <Button
-                  variant="outline-secondary"
-                  size="sm"
-                  onClick={limpiarFiltros}
-                >
-                  Limpiar filtros
-                </Button>
-              </div>
-            </Col>
-          )}
-        </Row>
-
-        {/* ============================== */}
-        {/* MODO RESULTADOS (cuando filtra)*/}
-        {/* ============================== */}
-        {hayFiltros ? (
-          <>
-            <div className="mb-4 d-flex justify-content-start">
-              <BannerCategoria texto={tituloResultados} tipo={tipoBannerResultados} />
-            </div>
-
-            <Row className="g-4 mb-5">
-              {productosFiltrados.length > 0 ? (
-                productosFiltrados.map((prod) => (
-                  <Col xs={12} sm={6} md={4} lg={3} key={prod.id}>
-                    <CardProducto producto={prod} />
-                  </Col>
-                ))
-              ) : (
-                <Col xs={12} className="text-center py-5">
-                  <h5 className="text-muted">No hay resultados con esos filtros.</h5>
-                </Col>
-              )}
-            </Row>
-          </>
-        ) : (
-          <>
-            {/* ============================== */}
-            {/* HOME CURADO                     */}
-            {/* ============================== */}
-
-            {/* MÁS VENDIDOS POR CATEGORÍA */}
-            {categorias.map((cat) => {
-              const prodTop = masVendidoPorCategoria[cat.nombre];
-              const tipo = tipoPorCategoria[cat.nombre] || "";
-
-              return (
-                <section key={cat.id} className="mb-5">
-                  <div className="mb-4 d-flex justify-content-center">
-                    <BannerCategoria texto={`Más vendido de ${cat.nombre}`} tipo={tipo} />
-                  </div>
-
-                  <Row className="g-4">
-                    {prodTop ? (
-                      <Col xs={12} sm={6} md={4} lg={3}>
-                        <CardProducto producto={prodTop} />
-                      </Col>
-                    ) : (
-                      <Col xs={12}>
-                        <div className="text-start py-3">
-                          <h6 className="text-muted m-0">
-                            Todavía no hay productos en {cat.nombre}.
-                          </h6>
-                        </div>
-                      </Col>
-                    )}
-                  </Row>
-                </section>
-              );
-            })}
-
-            {/* OFERTAS */}
-            <section className="mb-5">
+          return (
+            <section key={cat.id} className="mb-5">
               <div className="mb-4 d-flex justify-content-center">
-                <BannerCategoria texto="Ofertas" />
-              </div>
-
-              <div className="mb-4">
-                <CarruselOfertas />
+                <BannerCategoria
+                  texto={`Más vendido de ${cat.nombre}`}
+                  tipo={tipo}
+                />
               </div>
 
               <Row className="g-4">
-                {productosOferta.length > 0 ? (
-                  productosOferta.map((prod) => (
-                    <Col xs={12} sm={6} md={4} lg={3} key={prod.id}>
-                      <CardProducto producto={prod} />
-                    </Col>
-                  ))
+                {prodTop ? (
+                  <Col xs={12} sm={6} md={4} lg={3}>
+                    <CardProducto producto={prodTop} />
+                  </Col>
                 ) : (
                   <Col xs={12}>
-                    <div className="text-start py-3">
-                      <h6 className="text-muted m-0">No hay ofertas activas.</h6>
-                    </div>
+                    <h6 className="text-muted">
+                      Todavía no hay productos en {cat.nombre}.
+                    </h6>
                   </Col>
                 )}
               </Row>
             </section>
-          </>
-        )}
+          );
+        })}
       </Container>
 
-      {/* BANNER DE BENEFICIOS */}
-<section className="beneficios-wrapper">
-  <Container>
-    <Row className="beneficios-row">
-      <Col xs={12} md={4} className="beneficio-item">
-        <i className="bi bi-credit-card-2-back beneficio-icono"></i>
-        <div>
-          <h6 className="beneficio-titulo">Hasta 24 cuotas</h6>
-          <p className="beneficio-texto">abonando con tarjetas de crédito</p>
-        </div>
-      </Col>
+      {/* OFERTAS */}
+      <div className="mb-4">
+        <CarruselOfertas />
+      </div>
+      
+      {/* BENEFICIOS */}
+      <section className="beneficios-wrapper">
+        <Container>
+          <Row className="beneficios-row">
+            <Col xs={12} md={4} className="beneficio-item">
+              <i className="bi bi-credit-card-2-back beneficio-icono"></i>
+              <div>
+                <h6 className="beneficio-titulo">Hasta 24 cuotas</h6>
+                <p className="beneficio-texto">
+                  abonando con tarjetas de crédito
+                </p>
+              </div>
+            </Col>
 
-      <Col xs={12} md={4} className="beneficio-item">
-        <i className="bi bi-truck beneficio-icono"></i>
-        <div>
-          <h6 className="beneficio-titulo">Envíos a todo el país</h6>
-          <p className="beneficio-texto">a través de OCA</p>
-        </div>
-      </Col>
+            <Col xs={12} md={4} className="beneficio-item">
+              <i className="bi bi-truck beneficio-icono"></i>
+              <div>
+                <h6 className="beneficio-titulo">Envíos a todo el país</h6>
+                <p className="beneficio-texto">a través de OCA</p>
+              </div>
+            </Col>
 
-      <Col xs={12} md={4} className="beneficio-item">
-        <i className="bi bi-shield-check beneficio-icono"></i>
-        <div>
-          <h6 className="beneficio-titulo">Garantía oficial</h6>
-          <p className="beneficio-texto">hasta 36 meses en todos los productos</p>
-        </div>
-      </Col>
-    </Row>
-  </Container>
-</section>
+            <Col xs={12} md={4} className="beneficio-item">
+              <i className="bi bi-shield-check beneficio-icono"></i>
+              <div>
+                <h6 className="beneficio-titulo">Garantía oficial</h6>
+                <p className="beneficio-texto">
+                  hasta 36 meses en todos los productos
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <Container className="inicio-container py-4">
+        {/* ====================================== */}
+        {/* OFERTAS */}
+        {/* ====================================== */}
+        <section className="mb-5">
+          <div className="mb-4 d-flex justify-content-center">
+            <BannerCategoria texto="Ofertas" />
+          </div>
 
-
+          <Row className="g-4">
+            {productosOferta.map((prod) => (
+              <Col xs={12} sm={6} md={4} lg={3} key={prod.id}>
+                <CardProducto producto={prod} />
+              </Col>
+            ))}
+          </Row>
+        </section>
+      </Container>
     </div>
   );
 }
