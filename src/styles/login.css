@@ -1,11 +1,11 @@
+/* Overlay con blur sobre el fondo con degradé del body */
 .ml-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(5px);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,134 +13,186 @@
   z-index: 5000;
 }
 
+/* Modal tipo tarjeta premium (similar a contacto/productos) */
 .ml-modal {
-  background: #fff;
+  background: radial-gradient(circle at top left, #f97316 0, #ffffff 46%);
   width: 520px;
-  padding: 40px 45px;
-  border-radius: 16px;
-  box-shadow: 0px 20px 45px rgba(0, 0, 0, 0.25);
+  max-width: 95vw;
+  padding: 34px 38px 30px;
+  border-radius: 24px;
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.55);
   position: relative;
   animation: zoomIn 0.25s ease;
 }
 
+/* Botón cerrar */
 .ml-close {
   position: absolute;
   top: 14px;
   right: 18px;
-  font-size: 24px;
+  font-size: 22px;
   cursor: pointer;
   background: transparent;
   border: none;
+  color: #111827;
   opacity: 0.7;
   transition: 0.2s;
 }
 
 .ml-close:hover {
   opacity: 1;
+  transform: scale(1.05);
 }
 
-.ml-title {
-  text-align: center;
-  font-size: 26px;
+/* Chip marca ViciAR */
+.ml-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #111827;
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+/* Títulos */
+.ml-title {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 800;
   margin-bottom: 6px;
-  color: #000;
+  color: #111827;
 }
 
 .ml-subtitle {
-  text-align: center;
-  font-size: 15px;
-  color: #666;
-  margin-bottom: 25px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+/* Labels e inputs */
+.ml-field-group {
+  margin-bottom: 14px;
 }
 
 .ml-label {
   display: block;
-  font-size: 14px;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #333;
+  color: #374151;
   margin-bottom: 6px;
 }
 
 .ml-input {
   width: 100%;
   padding: 13px 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 15px;
-  transition: 0.25s;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .ml-input.big {
-  padding: 15px 16px;
+  padding: 14px 16px;
 }
 
 .ml-input:focus {
-  border-color: #271776;
-  box-shadow: 0 0 6px rgba(39, 23, 118, 0.45);
+  border-color: #7a5bff;
+  background: #ffffff;
+  box-shadow: 0 0 0 0.12rem rgba(122, 91, 255, 0.35);
   outline: none;
 }
 
-.ml-error {
-  color: #d32f2f;
-  font-size: 14px;
-  margin: 10px 0;
-  text-align: center;
-  font-weight: 600;
-}
-
-.ml-btn-row {
+/* Recordarme + olvidar contraseña */
+.ml-remember-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  gap: 12px;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  gap: 8px;
 }
 
-.ml-btn-cancel {
-  flex: 1;
-  padding: 12px;
-  border-radius: 10px;
-  background: #eee;
-  color: #333;
-  font-weight: 600;
+.ml-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.ml-remember input {
+  accent-color: #111827;
+}
+
+.ml-forgot-btn {
+  background: none;
   border: none;
+  font-size: 0.8rem;
+  color: #2563eb;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.25s;
+  padding: 0;
 }
 
-.ml-btn-cancel:hover {
-  background: #ddd;
+.ml-forgot-btn:hover {
+  text-decoration: underline;
+}
+
+/* Error */
+.ml-error {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin: 8px 0 2px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Botón principal */
+.ml-btn-row {
+  display: flex;
+  margin-top: 12px;
 }
 
 .ml-btn-primary {
   flex: 1;
   padding: 12px;
-  border-radius: 10px;
-  background: #271776;
-  color: #fff;
+  border-radius: 999px;
+  background: #111827;
+  color: #f9fafb;
   font-weight: 600;
-  border: none;
+  border: 1px solid #111827;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.2s ease;
 }
 
 .ml-btn-primary:hover {
-  background: #3b25a8;
+  background: #0f172a;
+  border-color: #0f172a;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.4);
 }
 
+/* Divisor */
 .ml-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 22px 0;
-  color: #999;
-  font-size: 14px;
+  margin: 20px 0 16px;
+  color: #9ca3af;
+  font-size: 0.85rem;
 }
 
 .ml-divider span {
   position: relative;
-  padding: 0 12px;
-  background: #fff;
+  padding: 0 10px;
+  background: transparent;
 }
 
 .ml-divider::before,
@@ -148,43 +200,41 @@
   content: "";
   flex: 1;
   height: 1px;
-  background: #ddd;
+  background: #e5e7eb;
+}
+
+/* Botones sociales */
+.ml-social.google,
+.ml-social.facebook {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
 }
 
 .ml-social.google {
-  width: 100%;
-  padding: 13px;
-  margin-bottom: 12px;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  transition: 0.25s;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  margin-bottom: 10px;
 }
 
 .ml-social.google:hover {
-  background: #f7f7f7;
+  background: #f3f4f6;
 }
 
 .ml-social.facebook {
-  width: 100%;
-  padding: 13px;
   background: #1877f2;
-  border-radius: 10px;
-  color: white;
-  font-weight: 600;
   border: none;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  transition: 0.25s;
+  color: #ffffff;
+  margin-bottom: 4px;
 }
 
 .ml-social.facebook:hover {
@@ -192,13 +242,15 @@
 }
 
 .ml-social i {
-  font-size: 18px;
+  font-size: 1rem;
 }
 
+/* Registro */
 .ml-register {
-  margin-top: 18px;
+  margin-top: 12px;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.85rem;
+  color: #4b5563;
 }
 
 .ml-register a {
@@ -211,6 +263,7 @@
   text-decoration: underline;
 }
 
+/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -222,7 +275,7 @@
 
 @keyframes zoomIn {
   from {
-    transform: scale(0.85);
+    transform: scale(0.9);
     opacity: 0;
   }
   to {
@@ -250,5 +303,21 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .ml-modal {
+    padding: 26px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .ml-title {
+    font-size: 20px;
+  }
+
+  .ml-subtitle {
+    font-size: 0.9rem;
   }
 }

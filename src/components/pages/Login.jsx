@@ -41,69 +41,91 @@ export default function ModalLogin({ show, onClose }) {
         className={`ml-modal ${shake ? "shake" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* CERRAR */}
         <button className="ml-close" onClick={onClose}>
           ✕
         </button>
 
-        <h2 className="ml-title">Iniciar sesión</h2>
+        {/* CHIP MARCA */}
+        <div className="ml-chip">ViciAR</div>
+
+        {/* TITULOS */}
+        <h2 className="ml-title">
+          Iniciar sesión <span className="texto-resaltado">gamer</span>
+        </h2>
         <p className="ml-subtitle">
           Entrá a tu cuenta y seguí viciando tranquilo 🎮
         </p>
 
-        <form onSubmit={handleLogin}>
-          <label className="ml-label">Usuario</label>
-          <input
-            type="text"
-            className="ml-input big"
-            placeholder="Tu usuario"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-          />
-
-          <label className="ml-label">Contraseña</label>
-          <input
-            type="password"
-            className="ml-input big"
-            placeholder="Tu contraseña"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
-
-          <label className="ml-remember">
+        {/* FORM */}
+        <form onSubmit={handleLogin} noValidate>
+          <div className="ml-field-group">
+            <label className="ml-label">Usuario</label>
             <input
-              type="checkbox"
-              checked={remember}
-              onChange={(e) => setRemember(e.target.checked)}
+              type="text"
+              className="ml-input big"
+              placeholder="Tu usuario"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
-            Recordarme
-          </label>
+          </div>
+
+          <div className="ml-field-group">
+            <label className="ml-label">Contraseña</label>
+            <input
+              type="password"
+              className="ml-input big"
+              placeholder="Tu contraseña"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+          </div>
+
+          <div className="ml-remember-row">
+            <label className="ml-remember">
+              <input
+                type="checkbox"
+                checked={remember}
+                onChange={(e) => setRemember(e.target.checked)}
+              />
+              Recordarme en este equipo
+            </label>
+
+            <button
+              type="button"
+              className="ml-forgot-btn"
+              onClick={() => alert("Función de recuperar contraseña pendiente")}
+            >
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
 
           {error && <p className="ml-error">{error}</p>}
 
           <div className="ml-btn-row">
-            <button type="button" className="ml-btn-cancel" onClick={onClose}>
-              Cancelar
-            </button>
             <button type="submit" className="ml-btn-primary">
               Ingresar
             </button>
           </div>
         </form>
 
+        {/* DIVISOR */}
         <div className="ml-divider">
-          <span>o ingresá con tu email</span>
+          <span>o ingresá con tus redes</span>
         </div>
 
+        {/* SOCIAL */}
         <button className="ml-social google">
-          <i className="bi bi-google"></i>
+          <i className="bi bi-google" />
           Continuar con Google
         </button>
 
         <button className="ml-social facebook">
-          <i className="bi bi-facebook"></i>
+          <i className="bi bi-facebook" />
           Continuar con Facebook
         </button>
 
+        {/* REGISTRO */}
         <p className="ml-register">
           ¿No tenés cuenta? <a href="/register">Registrate acá</a>
         </p>

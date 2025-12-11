@@ -1,98 +1,92 @@
-/* FONDO GENERAL */
-.reg-wrapper {
-  min-height: calc(100vh - 80px);
-  padding: 2.5rem 1rem 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(
-    circle at top,
-    #eef2ff 0,
-    #f9fafb 45%,
-    #e5e7eb 100%
-  );
+/* ENVOLVENTE GENERAL – Mismo fondo que Inicio (gris claro sobre body oscuro) */
+.reg-page-wrapper {
+  min-height: 100vh;
+  padding: 3rem 1rem 4rem;
+  background-color: #f2f2f2;
 }
 
-/* CARD PRINCIPAL */
-.reg-card {
-  width: 100%;
-  max-width: 980px;
+/* Contenedor centrado */
+.reg-page-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* HERO SUPERIOR */
+.reg-page-header {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.reg-page-subtitle {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+/* LAYOUT PRINCIPAL: INFO + FORM */
+.reg-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-  border-radius: 1.75rem;
-  background: #ffffff;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
-  overflow: hidden;
+  gap: 2rem;
 }
 
-/* PANEL IZQUIERDO */
-.reg-aside {
-  background: linear-gradient(135deg, #312e81, #1d4ed8);
+/* PANEL IZQUIERDO: INFO */
+.reg-info-panel {
+  padding: 1.6rem 1.4rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #111827, #1f2937);
   color: #e5e7eb;
-  padding: 2.5rem 2.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.35);
 }
 
-.reg-brand {
-  font-size: 1.4rem;
+.reg-info-title {
+  font-size: 1.3rem;
   font-weight: 700;
+  margin-bottom: 0.4rem;
   color: #f9fafb;
-  margin-bottom: 0.25rem;
 }
 
-.reg-aside-text {
+.reg-info-text {
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
-.reg-benefits {
+.reg-info-list {
   list-style: none;
   padding-left: 0;
-  margin: 0.5rem 0 0;
+  margin: 0 0 1.3rem;
   font-size: 0.9rem;
 }
 
-.reg-benefits li + li {
+.reg-info-list li + li {
   margin-top: 0.25rem;
 }
 
-.reg-aside-login {
-  margin-top: 1.5rem;
+.reg-info-login {
   font-size: 0.9rem;
+  margin: 0;
 }
 
-.reg-aside-login a {
+.reg-info-login a {
   color: #fbbf24;
   text-decoration: none;
   font-weight: 600;
 }
 
-.reg-aside-login a:hover {
+.reg-info-login a:hover {
   text-decoration: underline;
 }
 
-/* PANEL DERECHO – FORMULARIO */
-.reg-form-panel {
-  padding: 2.5rem 2.75rem;
+/* PANEL DERECHO – CARD DEL FORMULARIO */
+.reg-form-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2.1rem 2rem 2.3rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
 }
 
-.reg-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-  color: #111827;
-}
-
-.reg-sub {
-  font-size: 0.95rem;
-  color: #6b7280;
-  margin-bottom: 1.5rem;
-}
-
-/* FORM */
+/* FORMULARIO */
 .reg-form {
   display: flex;
   flex-direction: column;
@@ -112,49 +106,57 @@
 }
 
 .reg-field label {
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.22rem;
   color: #374151;
 }
 
 .reg-field input {
-  border-radius: 0.75rem;
+  border-radius: 0.85rem;
   border: 1px solid #d1d5db;
-  padding: 0.55rem 0.8rem;
+  padding: 0.6rem 0.85rem;
   font-size: 0.9rem;
   outline: none;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease,
-    background-color 0.12s ease;
+  transition: border-color 0.14s ease, box-shadow 0.14s ease,
+    background-color 0.14s ease;
   background-color: #f9fafb;
 }
 
 .reg-field input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+  border-color: #7a5bff;
+  box-shadow: 0 0 0 0.12rem rgba(122, 91, 255, 0.32);
   background-color: #ffffff;
+}
+
+/* Hint contraseña */
+.reg-hint {
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  color: #9ca3af;
 }
 
 /* CHECKBOX */
 .reg-check {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   font-size: 0.85rem;
   color: #4b5563;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
 }
 
 .reg-check input[type="checkbox"] {
   width: 16px;
   height: 16px;
+  accent-color: #111827;
 }
 
 /* ERRORES / ÉXITO */
 .reg-error {
   color: #b91c1c;
   font-size: 0.8rem;
-  margin-top: 0.15rem;
+  margin-top: 0.18rem;
 }
 
 .reg-success {
@@ -175,20 +177,19 @@
   cursor: pointer;
   background: linear-gradient(135deg, #4f46e5, #06b6d4);
   color: #f9fafb;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
-  transition: transform 0.12s ease, box-shadow 0.12s ease,
-    filter 0.12s ease;
+  box-shadow: 0 12px 26px rgba(79, 70, 229, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
 }
 
 .reg-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 34px rgba(79, 70, 229, 0.55);
-  filter: brightness(1.02);
+  box-shadow: 0 16px 36px rgba(79, 70, 229, 0.6);
+  filter: brightness(1.03);
 }
 
-/* LINK A LOGIN */
+/* LINK A LOGIN ABAJO DEL FORM */
 .reg-login-link {
-  margin-top: 0.75rem;
+  margin-top: 0.8rem;
   font-size: 0.85rem;
   color: #4b5563;
 }
@@ -204,19 +205,27 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  .reg-card {
+@media (max-width: 900px) {
+  .reg-layout {
     grid-template-columns: 1fr;
   }
 
-  .reg-aside {
-    padding: 1.8rem 1.6rem;
-    text-align: center;
-    align-items: center;
+  .reg-info-panel {
+    order: 1;
   }
 
-  .reg-form-panel {
-    padding: 1.9rem 1.6rem 2.2rem;
+  .reg-form-card {
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .reg-page-wrapper {
+    padding: 2.3rem 0.8rem 3rem;
+  }
+
+  .reg-form-card {
+    padding: 1.8rem 1.4rem 2rem;
   }
 
   .reg-row {

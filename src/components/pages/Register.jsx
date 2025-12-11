@@ -29,8 +29,7 @@ function validateField(name, value, allValues) {
 
     case "email":
       if (!v) return "El email es obligatorio.";
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!re.test(v)) return "Email inválido.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "Email inválido.";
       return "";
 
     case "dni":
@@ -121,177 +120,193 @@ export default function Register() {
 
     if (Object.keys(errs).length > 0) return;
 
-    // Acá después vas a pegar el fetch al backend 👇
+    // Acá después vas a pegar el fetch al backend
     setSuccess("Registro exitoso ✔");
     setValues(initialValues);
     setTouched({});
   };
 
   return (
-    <div className="reg-wrapper">
-      <div className="reg-card">
-        {/* Panel izquierdo: copy lindo */}
-        <aside className="reg-aside">
-          <h2 className="reg-brand">Bienvenido a ViciAR</h2>
-          <p className="reg-aside-text">
-            Creá tu cuenta para guardar pedidos, seguir envíos
-            y tener tus juegos favoritos siempre a mano.
+    <div className="reg-page-wrapper">
+      <div className="reg-page-inner">
+        {/* HERO ARRIBA (estilo Inicio) */}
+        <header className="reg-page-header">
+          <h1 className="fw-bold inicio-hero-title">
+            Crear cuenta
+          </h1>
+          <p className="reg-page-subtitle">
+            Registrate para guardar tus pedidos, seguir envíos
+            y recibir ofertas pensadas para vos.
           </p>
+        </header>
 
-          <ul className="reg-benefits">
-            <li>✔ Checkout más rápido</li>
-            <li>✔ Historial de compras</li>
-            <li>✔ Ofertas pensadas para vos</li>
-          </ul>
+        {/* CONTENIDO EN 2 COLUMNAS (info + form) */}
+        <div className="reg-layout">
+          {/* COLUMNA IZQUIERDA: texto / beneficios */}
+          <section className="reg-info-panel">
+            <h2 className="reg-info-title">Tu perfil gamer en un solo lugar</h2>
+            <p className="reg-info-text">
+              Con una cuenta ViciAR podés seguir el estado de tus compras,
+              guardar tus productos favoritos y no perderte ninguna promo.
+            </p>
 
-          <p className="reg-aside-login">
-            ¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a>
-          </p>
-        </aside>
+            <ul className="reg-info-list">
+              <li>✔ Checkout más rápido</li>
+              <li>✔ Historial de compras y envíos</li>
+              <li>✔ Alertas de ofertas y lanzamientos</li>
+            </ul>
 
-        {/* Panel derecho: formulario */}
-        <div className="reg-form-panel">
-          <h1 className="reg-title">Crear cuenta</h1>
-          <p className="reg-sub">Completá tus datos para registrarte.</p>
+            <p className="reg-info-login">
+              ¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a>
+            </p>
+          </section>
 
-          <form className="reg-form" onSubmit={handleSubmit}>
-            <div className="reg-row">
-              <div className="reg-field">
-                <label>Nombre completo</label>
-                <input
-                  name="fullName"
-                  value={values.fullName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Ej: Juan Pérez"
-                  autoComplete="name"
-                />
-                {touched.fullName && errors.fullName && (
-                  <p className="reg-error">{errors.fullName}</p>
-                )}
+          {/* COLUMNA DERECHA: formulario */}
+          <section className="reg-form-card">
+            <form className="reg-form" onSubmit={handleSubmit} noValidate>
+              <div className="reg-row">
+                <div className="reg-field">
+                  <label>Nombre completo</label>
+                  <input
+                    name="fullName"
+                    value={values.fullName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Ej: Juan Pérez"
+                    autoComplete="name"
+                  />
+                  {touched.fullName && errors.fullName && (
+                    <p className="reg-error">{errors.fullName}</p>
+                  )}
+                </div>
+
+                <div className="reg-field">
+                  <label>Usuario</label>
+                  <input
+                    name="username"
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Nombre de usuario"
+                    autoComplete="username"
+                  />
+                  {touched.username && errors.username && (
+                    <p className="reg-error">{errors.username}</p>
+                  )}
+                </div>
               </div>
 
               <div className="reg-field">
-                <label>Usuario</label>
+                <label>Email</label>
                 <input
-                  name="username"
-                  value={values.username}
+                  name="email"
+                  value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="Nombre de usuario"
-                  autoComplete="username"
+                  placeholder="email@ejemplo.com"
+                  autoComplete="email"
                 />
-                {touched.username && errors.username && (
-                  <p className="reg-error">{errors.username}</p>
+                {touched.email && errors.email && (
+                  <p className="reg-error">{errors.email}</p>
                 )}
               </div>
-            </div>
 
-            <div className="reg-field">
-              <label>Email</label>
-              <input
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="email@ejemplo.com"
-                autoComplete="email"
-              />
-              {touched.email && errors.email && (
-                <p className="reg-error">{errors.email}</p>
+              <div className="reg-row">
+                <div className="reg-field">
+                  <label>DNI</label>
+                  <input
+                    name="dni"
+                    value={values.dni}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Ej: 40123456"
+                    inputMode="numeric"
+                  />
+                  {touched.dni && errors.dni && (
+                    <p className="reg-error">{errors.dni}</p>
+                  )}
+                </div>
+
+                <div className="reg-field">
+                  <label>Teléfono</label>
+                  <input
+                    name="telefono"
+                    value={values.telefono}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Ej: 3812345678"
+                    inputMode="tel"
+                  />
+                  {touched.telefono && errors.telefono && (
+                    <p className="reg-error">{errors.telefono}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="reg-row">
+                <div className="reg-field">
+                  <label>Contraseña</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Mínimo 8 caracteres"
+                    autoComplete="new-password"
+                  />
+                  {touched.password && errors.password && (
+                    <p className="reg-error">{errors.password}</p>
+                  )}
+                  <p className="reg-hint">
+                    Debe incluir mayúsculas, minúsculas y números.
+                  </p>
+                </div>
+
+                <div className="reg-field">
+                  <label>Repetir contraseña</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Repetir contraseña"
+                    autoComplete="new-password"
+                  />
+                  {touched.confirmPassword && errors.confirmPassword && (
+                    <p className="reg-error">{errors.confirmPassword}</p>
+                  )}
+                </div>
+              </div>
+
+              <label className="reg-check">
+                <input
+                  type="checkbox"
+                  name="terms"
+                  checked={values.terms}
+                  onChange={handleChange}
+                />
+                <span>
+                  Acepto los términos y condiciones y la política de privacidad.
+                </span>
+              </label>
+              {touched.terms && errors.terms && (
+                <p className="reg-error">{errors.terms}</p>
               )}
-            </div>
 
-            <div className="reg-row">
-              <div className="reg-field">
-                <label>DNI</label>
-                <input
-                  name="dni"
-                  value={values.dni}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Ej: 40123456"
-                  inputMode="numeric"
-                />
-                {touched.dni && errors.dni && (
-                  <p className="reg-error">{errors.dni}</p>
-                )}
+              <button type="submit" className="reg-btn">
+                Crear cuenta
+              </button>
+
+              {success && <p className="reg-success">{success}</p>}
+
+              <div className="reg-login-link">
+                ¿Ya tenés cuenta?
+                <a href="/login"> Iniciar sesión</a>
               </div>
-
-              <div className="reg-field">
-                <label>Teléfono</label>
-                <input
-                  name="telefono"
-                  value={values.telefono}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Ej: 3812345678"
-                  inputMode="tel"
-                />
-                {touched.telefono && errors.telefono && (
-                  <p className="reg-error">{errors.telefono}</p>
-                )}
-              </div>
-            </div>
-
-            <div className="reg-row">
-              <div className="reg-field">
-                <label>Contraseña</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Mínimo 8 caracteres"
-                  autoComplete="new-password"
-                />
-                {touched.password && errors.password && (
-                  <p className="reg-error">{errors.password}</p>
-                )}
-              </div>
-
-              <div className="reg-field">
-                <label>Repetir contraseña</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Repetir contraseña"
-                  autoComplete="new-password"
-                />
-                {touched.confirmPassword && errors.confirmPassword && (
-                  <p className="reg-error">{errors.confirmPassword}</p>
-                )}
-              </div>
-            </div>
-
-            <label className="reg-check">
-              <input
-                type="checkbox"
-                name="terms"
-                checked={values.terms}
-                onChange={handleChange}
-              />
-              <span>Acepto los términos y condiciones</span>
-            </label>
-            {touched.terms && errors.terms && (
-              <p className="reg-error">{errors.terms}</p>
-            )}
-
-            <button type="submit" className="reg-btn">
-              Crear cuenta
-            </button>
-
-            {success && <p className="reg-success">{success}</p>}
-
-            <div className="reg-login-link">
-              ¿Ya tenés cuenta?
-              <a href="/login"> Iniciar sesión</a>
-            </div>
-          </form>
+            </form>
+          </section>
         </div>
       </div>
     </div>
