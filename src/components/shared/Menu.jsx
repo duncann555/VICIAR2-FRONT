@@ -67,6 +67,9 @@ function Menu() {
           <NavLink to="/productos" className={getNavLinkClass}>
             Productos
           </NavLink>
+          <NavLink to="/contacto" className={getNavLinkClass}>
+            Consultanos
+          </NavLink>
         </Container>
       </div>
 

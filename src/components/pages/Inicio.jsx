@@ -11,9 +11,13 @@ import {
 import { useNavigate } from "react-router-dom";
 
 // IMÁGENES CARRUSEL PRINCIPAL
-import banner1 from "../../assets/banner1.png";
-import banner2 from "../../assets/banner2.png";
-import banner3 from "../../assets/banner3.png";
+import banner1 from "../../assets/banner1.jpg";
+import banner2 from "../../assets/banner2.jpg";
+import banner3 from "../../assets/banner3.jpg";
+import banner4 from "../../assets/banner4.jpg";
+import banner5 from "../../assets/banner5.jpg";
+import banner6 from "../../assets/banner6.jpg";
+
 
 // IMÁGENES CARRUSEL OFERTAS
 import oferta1 from "../../assets/oferta1.png";
@@ -216,6 +220,15 @@ function CarruselPrincipal() {
         <Carousel.Item>
           <img className="carousel-img" src={banner3} alt="banner 3" />
         </Carousel.Item>
+                <Carousel.Item>
+          <img className="carousel-img" src={banner4} alt="banner 3" />
+        </Carousel.Item>
+                <Carousel.Item>
+          <img className="carousel-img" src={banner5} alt="banner 3" />
+        </Carousel.Item>
+                <Carousel.Item>
+          <img className="carousel-img" src={banner6} alt="banner 3" />
+        </Carousel.Item>
       </Carousel>
     </div>
   );
@@ -227,19 +240,22 @@ function CarruselPrincipal() {
 // ===============================
 function CarruselOfertas() {
   return (
-    <Carousel interval={3000}>
-      <Carousel.Item>
-        <img className="imagen-ofertas" src={oferta1} alt="oferta 1" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="imagen-ofertas" src={oferta2} alt="oferta 2" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="imagen-ofertas" src={oferta3} alt="oferta 3" />
-      </Carousel.Item>
-    </Carousel>
+    <div className="carousel-wrapper-ofertas">
+      <Carousel interval={3000} indicators className="main-carousel-ofertas">
+        <Carousel.Item>
+          <img className="carousel-img-ofertas" src={oferta1} alt="oferta 1" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="carousel-img-ofertas" src={oferta2} alt="oferta 2" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="carousel-img-ofertas" src={oferta3} alt="oferta 3" />
+        </Carousel.Item>
+      </Carousel>
+    </div>
   );
 }
+
 
 // ===============================
 //  COMPONENTE PRINCIPAL: Inicio
@@ -336,6 +352,8 @@ export default function Inicio() {
     <div className="inicio-wrapper">
       {/* CARRUSEL PRINCIPAL */}
       <CarruselPrincipal />
+
+      
 
       <Container className="inicio-container py-4">
         {/* HERO */}
@@ -484,6 +502,39 @@ export default function Inicio() {
           </>
         )}
       </Container>
+
+      {/* BANNER DE BENEFICIOS */}
+<section className="beneficios-wrapper">
+  <Container>
+    <Row className="beneficios-row">
+      <Col xs={12} md={4} className="beneficio-item">
+        <i className="bi bi-credit-card-2-back beneficio-icono"></i>
+        <div>
+          <h6 className="beneficio-titulo">Hasta 24 cuotas</h6>
+          <p className="beneficio-texto">abonando con tarjetas de crédito</p>
+        </div>
+      </Col>
+
+      <Col xs={12} md={4} className="beneficio-item">
+        <i className="bi bi-truck beneficio-icono"></i>
+        <div>
+          <h6 className="beneficio-titulo">Envíos a todo el país</h6>
+          <p className="beneficio-texto">a través de OCA</p>
+        </div>
+      </Col>
+
+      <Col xs={12} md={4} className="beneficio-item">
+        <i className="bi bi-shield-check beneficio-icono"></i>
+        <div>
+          <h6 className="beneficio-titulo">Garantía oficial</h6>
+          <p className="beneficio-texto">hasta 36 meses en todos los productos</p>
+        </div>
+      </Col>
+    </Row>
+  </Container>
+</section>
+
+
     </div>
   );
 }
